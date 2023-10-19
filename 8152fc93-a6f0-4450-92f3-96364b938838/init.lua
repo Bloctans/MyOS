@@ -1,15 +1,43 @@
--- This will help you bloc: https://stackoverflow.com/questions/48629129/what-does-load-do-in-lua
+--[[
+    local ok, err = xpcall(main, debug.traceback)
+
+    if not ok then
+        printError(err)
+    end
+
+    traceback code
+]]
 
 local addr = computer.getBootAddress()
+local gpu = component.list("gpu")()
+
+_G._OSVERSION = "BlocOS Pre-Alpha 0.0.3"
+component.invoke(gpu,"set",1,1,_G._OSVERSION)
+
+component.invoke(gpu,"set",1,2,"Start MPath")
+
+-- Incase you wanna move the OS base
+_G.SYSROOT = "sys/"
+_G.ROOT = "/"
+
+function MPath(_path)
+    return _G.ROOT.._G.SYSROOT .. _path
+end
+
+-- Basic GPU setup
+
+component.invoke(gpu,"set",1,3,"Initalize basic Require API")
 
 -- Initalizes Require API
-local handle = assert(component.invoke(addr, "open", "/libraries/base/require.lua"))
+local handle = assert(component.invoke(addr, "open", MPath("base/baseloading.lua")))
 local readed = component.invoke(addr, "read", handle, math.maxinteger or math.huge)
 component.invoke(addr, "close", handle)
 
-local func,err = load(readed, "=/libraries/base/require.lua", "bt", _G)
-if func then
-    _G.require = func
-else error("Compilation error:", err) end
+local func,err = load(readed, "="..MPath("base/baseloading.lua"), "bt", _G)
+local err, result = pcall(func)
 
-require("/libraries/base/boot.lua").init()
+_G.baseloading = result
+
+component.invoke(gpu,"set",1,4,"Start Boot script")
+
+baseloading.loadandinit("base/boot.lua")
