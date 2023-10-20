@@ -8,11 +8,28 @@
     traceback code
 ]]
 
-local addr = computer.getBootAddress()
 local gpu = component.list("gpu")()
+local addr = computer.getBootAddress()
 
-_G._OSVERSION = "BlocOS Pre-Alpha 0.0.3"
+_G._OSVERSION = "BlocOS Pre-Alpha 0.1"
 component.invoke(gpu,"set",1,1,_G._OSVERSION)
+
+--[[if tonumber(string.sub(_VERSION,7,7)) < 3 then
+    component.invoke(gpu,"set",1,2,"Invalid LUA version")
+    component.invoke(gpu,"set",1,3,"5.3 or higher needed.")
+    component.invoke(gpu,"set",1,5,"Press any key to shut down.")
+    component.invoke(gpu,"set",1,6,"Click to continue with possible errors.")
+
+    while true do
+        local sigerr = {computer.pullSignal()}
+    
+        if sigerr[1] == "key_down" then
+            computer.shutdown()
+        else
+            break
+        end
+    end
+end]]
 
 component.invoke(gpu,"set",1,2,"Start MPath")
 
@@ -24,20 +41,48 @@ function MPath(_path)
     return _G.ROOT.._G.SYSROOT .. _path
 end
 
--- Basic GPU setup
+function errorwrap()
+    component.invoke(gpu,"set",1,3,"Initalize basic Require API")
 
-component.invoke(gpu,"set",1,3,"Initalize basic Require API")
+    -- Initalizes Require API
+    local handle = assert(component.invoke(addr, "open", MPath("base/baseloading.lua")))
+    local readed = component.invoke(addr, "read", handle, math.maxinteger or math.huge)
+    component.invoke(addr, "close", handle)
 
--- Initalizes Require API
-local handle = assert(component.invoke(addr, "open", MPath("base/baseloading.lua")))
-local readed = component.invoke(addr, "read", handle, math.maxinteger or math.huge)
-component.invoke(addr, "close", handle)
+    local func,err = load(readed, "="..MPath("base/baseloading.lua"), "bt", _G)
+    local err, result = pcall(func)
 
-local func,err = load(readed, "="..MPath("base/baseloading.lua"), "bt", _G)
-local err, result = pcall(func)
+    _G.baseloading = result
 
-_G.baseloading = result
+    component.invoke(gpu,"set",1,4,"Start Boot script")
 
-component.invoke(gpu,"set",1,4,"Start Boot script")
+    baseloading.loadandinit("base/boot.lua")
+end
 
-baseloading.loadandinit("base/boot.lua")
+local invoke = component.invoke
+
+local ok, err = xpcall(errorwrap, debug.traceback)
+local lines = {}
+
+if not ok then
+    for s in err:gmatch("[^\r\n]+") do
+        table.insert(lines, s)
+    end
+    invoke(gpu,"set",1,3,"A surious error occured.  ")
+    invoke(gpu,"set",1,4,"Click to view error.  ")
+    invoke(gpu,"set",1,5,"Press any key to restart.  ")
+    invoke(gpu,"set",1,6,"                                 ")
+    computer.beep(1000,0.5)
+end
+
+while true do
+    local sigerr = {computer.pullSignal()}
+
+    if sigerr[1] == "key_down" then
+        computer.shutdown(true)
+    elseif sigerr[1] == "touch" then
+        for i,v in pairs(lines) do
+            invoke(gpu,"set",1,i+6,v.."  ")
+        end
+    end
+end

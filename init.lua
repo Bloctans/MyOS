@@ -1,4 +1,4 @@
-_G._OSVERSION = "OpenLoader 0.3"
+_G._OSVERSION = "OpenLoader 0.3 (Edited)"
 local component = component or require('component')
 local computer = computer or require('computer')
 local unicode = unicode or require('unicode')
@@ -113,7 +113,7 @@ for fs in component.list("filesystem") do
     if component.invoke(fs, "isDirectory", "boot/kernel/")then
         for _,file in ipairs(component.invoke(fs, "list", "boot/kernel/")) do
             osList[#osList+1] = {fpx = "boot/kernel/", file = file, address = fs}
-            status(tostring(#osList).."."..file.." from "..(fs:sub(1,3))..labelText(fs))
+            status(tostring(#osList).."."..file)
         end
     end
     if fs ~= computer.getBootAddress() and component.invoke(fs, "exists", "init.lua") then
@@ -125,13 +125,10 @@ for fs in component.list("filesystem") do
             end)
         end
         osList[#osList+1] = {fpx = "", file = "init.lua", address = fs}
-        status(tostring(#osList).."."..osName.." from "..(fs:sub(1,3))..labelText(fs))
+        status(tostring(#osList).."."..osName)
     end
 end
 status("Select os: ")
-if #osList == 1 then
-    boot(osList[1])
-end
 if #osList == 0 then
     error("No OS found")
     while true do computer.pullSignal() end
