@@ -1,8 +1,6 @@
--- set up gpu and boot address
 local gpu = component.list("gpu")()
 _G.bootaddr = computer.getBootAddress()
 
--- start boot with printing os version
 _G._OSVERSION = "BlocOS Alpha 0.4"
 component.invoke(gpu,"set",1,1,_G._OSVERSION)
 
@@ -12,7 +10,6 @@ component.invoke(gpu,"set",1,2,"Start MPath")
 _G.SYSROOT = "sys/"
 _G.ROOT = "/"
 
--- No idea why you would wanna do that but it exists
 function MPath(_path, sys)
     return _G.ROOT.._G.SYSROOT .. _path
 end
@@ -26,11 +23,9 @@ function errorwrap()
     local readed = component.invoke(bootaddr, "read", handle, math.maxinteger or math.huge)
     component.invoke(bootaddr, "close", handle)
 
-    -- turn package system into lua function
     local func,err = load(readed, "="..MPath("base/baseloading.lua"), "bt", _G)
     local err, result = pcall(func)
 
-    -- inject into globals
     _G.baseloading = result
 
     -- start boot script
@@ -38,7 +33,6 @@ function errorwrap()
     baseloading.loadandinit("base/boot")
 end
 
--- i hate myself
 local invoke = component.invoke
 
 -- error wrapper start
