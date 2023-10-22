@@ -9,7 +9,7 @@
 ]]
 
 local gpu = component.list("gpu")()
-local addr = computer.getBootAddress()
+_G.bootaddr = computer.getBootAddress()
 
 _G._OSVERSION = "BlocOS Alpha 0.4"
 component.invoke(gpu,"set",1,1,_G._OSVERSION)
@@ -48,9 +48,9 @@ function errorwrap()
     component.invoke(gpu,"set",1,3,"Start Init basic Require API")
 
     -- Initalizes Require API
-    local handle = assert(component.invoke(addr, "open", MPath("base/baseloading.lua")))
-    local readed = component.invoke(addr, "read", handle, math.maxinteger or math.huge)
-    component.invoke(addr, "close", handle)
+    local handle = assert(component.invoke(bootaddr, "open", MPath("base/baseloading.lua")))
+    local readed = component.invoke(bootaddr, "read", handle, math.maxinteger or math.huge)
+    component.invoke(bootaddr, "close", handle)
 
     local func,err = load(readed, "="..MPath("base/baseloading.lua"), "bt", _G)
     local err, result = pcall(func)

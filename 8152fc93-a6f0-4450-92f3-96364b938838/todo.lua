@@ -15,20 +15,22 @@
         - Shell: run / Run file
         - Run file: cls
         - Run file: Error handler Details
-
-    DOING:
+        - Base Error Handler: fix strings
         - Run file: dir / List Current DIR
 
+    DOING:
+
     DO:
-        - Code Comments
 
     Alpha 1.0:  
         - Shell: Check for update
         - OpenOS: Installer
         - MineOS: Installer
         - Run file: update
+        - Code Comments
 
     Alpha 1.1 (Program update):
+        - Unhardcode current DIR
         - Run file: edit / Edit file
         - Run file: create / Create file
         - Dir: List file sizes and creation dates
@@ -36,7 +38,8 @@
         - Run file: CTRL + C
 
     Alpha 1.2:
-        - Base Error Handler: fix strings
+        - Run file: Config
+        - Dir: paths
         - Make Run integrated into enter handle (instead of you having to do run [file])
         - Run file: Sandbox
         - Main shell: Wrap around text once it hits the edge of screen

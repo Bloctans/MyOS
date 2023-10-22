@@ -31,7 +31,10 @@ function shell.handle_enter()
         baseshell.new(" run dir: List programs")
         baseshell.new("  For now, in order to create/edit programs you need to")
         baseshell.new("  do that via external OS")
+    elseif split[1] ~= "" then
+        baseshell.new("Invalid Command: "..split[1])
     end
+    
     shell.current = ""
     baseshell.newline()
 end
