@@ -21,13 +21,13 @@
     DOING:
 
     DO:
+        - Code Comments
 
     Alpha 1.0:  
-        - Shell: Check for update
         - OpenOS: Installer
+        - Shell: Check for update
         - MineOS: Installer
         - Run file: update
-        - Code Comments
 
     Alpha 1.1 (Program update):
         - Unhardcode current DIR
@@ -50,4 +50,14 @@
         - Base Shell: keep last 4 lines in table
         - Rewrite all the bad things (currently only shell commands)
         - OS: User Management or somethin
+]]
+
+--[[
+    local ok, err = xpcall(main, debug.traceback)
+
+    if not ok then
+        printError(err)
+    end
+
+    traceback code
 ]]

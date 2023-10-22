@@ -1,35 +1,10 @@
---[[
-    local ok, err = xpcall(main, debug.traceback)
-
-    if not ok then
-        printError(err)
-    end
-
-    traceback code
-]]
-
+-- set up gpu and boot address
 local gpu = component.list("gpu")()
 _G.bootaddr = computer.getBootAddress()
 
+-- start boot with printing os version
 _G._OSVERSION = "BlocOS Alpha 0.4"
 component.invoke(gpu,"set",1,1,_G._OSVERSION)
-
---[[if tonumber(string.sub(_VERSION,7,7)) < 3 then
-    component.invoke(gpu,"set",1,2,"Invalid LUA version")
-    component.invoke(gpu,"set",1,3,"5.3 or higher needed.")
-    component.invoke(gpu,"set",1,5,"Press any key to shut down.")
-    component.invoke(gpu,"set",1,6,"Click to continue with possible errors.")
-
-    while true do
-        local sigerr = {computer.pullSignal()}
-    
-        if sigerr[1] == "key_down" then
-            computer.shutdown()
-        else
-            break
-        end
-    end
-end]]
 
 component.invoke(gpu,"set",1,2,"Start MPath")
 
@@ -37,35 +12,40 @@ component.invoke(gpu,"set",1,2,"Start MPath")
 _G.SYSROOT = "sys/"
 _G.ROOT = "/"
 
+-- No idea why you would wanna do that but it exists
 function MPath(_path, sys)
-    --[[if not sys then
-
-    end]]
     return _G.ROOT.._G.SYSROOT .. _path
 end
 
+-- Inital error handler
 function errorwrap()
     component.invoke(gpu,"set",1,3,"Start Init basic Require API")
 
-    -- Initalizes Require API
+    -- load the package system
     local handle = assert(component.invoke(bootaddr, "open", MPath("base/baseloading.lua")))
     local readed = component.invoke(bootaddr, "read", handle, math.maxinteger or math.huge)
     component.invoke(bootaddr, "close", handle)
 
+    -- turn package system into lua function
     local func,err = load(readed, "="..MPath("base/baseloading.lua"), "bt", _G)
     local err, result = pcall(func)
 
+    -- inject into globals
     _G.baseloading = result
 
+    -- start boot script
     component.invoke(gpu,"set",1,4,"Start Boot script")
     baseloading.loadandinit("base/boot")
 end
 
+-- i hate myself
 local invoke = component.invoke
 
+-- error wrapper start
 local ok, err = xpcall(errorwrap, debug.traceback)
 local lines = {}
 
+-- creates the error dialog
 if not ok then
     for s in err:gmatch("[^\r\n]+") do
         new = ""
@@ -84,6 +64,8 @@ if not ok then
     computer.beep(1000,0.5)
 end
 
+-- key down = restart
+-- click = view error
 while true do
     local sigerr = {computer.pullSignal()}
 
