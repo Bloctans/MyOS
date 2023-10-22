@@ -11,7 +11,7 @@
 local gpu = component.list("gpu")()
 local addr = computer.getBootAddress()
 
-_G._OSVERSION = "BlocOS Pre-Alpha 0.1"
+_G._OSVERSION = "BlocOS Alpha 0.4"
 component.invoke(gpu,"set",1,1,_G._OSVERSION)
 
 --[[if tonumber(string.sub(_VERSION,7,7)) < 3 then
@@ -37,12 +37,15 @@ component.invoke(gpu,"set",1,2,"Start MPath")
 _G.SYSROOT = "sys/"
 _G.ROOT = "/"
 
-function MPath(_path)
+function MPath(_path, sys)
+    --[[if not sys then
+
+    end]]
     return _G.ROOT.._G.SYSROOT .. _path
 end
 
 function errorwrap()
-    component.invoke(gpu,"set",1,3,"Initalize basic Require API")
+    component.invoke(gpu,"set",1,3,"Start Init basic Require API")
 
     -- Initalizes Require API
     local handle = assert(component.invoke(addr, "open", MPath("base/baseloading.lua")))
@@ -55,8 +58,7 @@ function errorwrap()
     _G.baseloading = result
 
     component.invoke(gpu,"set",1,4,"Start Boot script")
-
-    baseloading.loadandinit("base/boot.lua")
+    baseloading.loadandinit("base/boot")
 end
 
 local invoke = component.invoke
@@ -68,10 +70,10 @@ if not ok then
     for s in err:gmatch("[^\r\n]+") do
         table.insert(lines, s)
     end
-    invoke(gpu,"set",1,3,"A surious error occured.  ")
-    invoke(gpu,"set",1,4,"Click to view error.  ")
-    invoke(gpu,"set",1,5,"Press any key to restart.  ")
-    invoke(gpu,"set",1,6,"                                 ")
+    invoke(gpu,"set",1,10,"A surious error occured.  ")
+    invoke(gpu,"set",1,11,"Click to view error.  ")
+    invoke(gpu,"set",1,12,"Press any key to restart.  ")
+    invoke(gpu,"set",1,13,"                                 ")
     computer.beep(1000,0.5)
 end
 
@@ -81,8 +83,6 @@ while true do
     if sigerr[1] == "key_down" then
         computer.shutdown(true)
     elseif sigerr[1] == "touch" then
-        for i,v in pairs(lines) do
-            invoke(gpu,"set",1,i+6,v.."  ")
-        end
+        for i,v in pairs(lines) do invoke(gpu,"set",1,i+13,v.."  ") end
     end
 end

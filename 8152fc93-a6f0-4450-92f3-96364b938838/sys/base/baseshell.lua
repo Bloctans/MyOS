@@ -7,7 +7,8 @@ baseshell = {}
 baseshell.currentline = 1
 
 local w,h = component.gpu.getResolution()
-local redrawshell = true
+
+local redrawshell = true -- If true, next render it will re draw the shell
 local redrawlatest = false
 
 function baseshell.render()
@@ -41,8 +42,18 @@ function baseshell.clear()
 end
 
 function baseshell.new(msg)
-    baseshell.newline()
-    baseshell.edit(msg)
+    baseshell.newline() -- Enters a new line into the table
+    baseshell.edit(msg) -- Sets the line to the msg
+end
+
+function baseshell.newlines(amount)
+    if not amount then
+        amount = 2
+    end
+
+    for i = 1,amount do
+        baseshell.newline()
+    end
 end
 
 function baseshell.newline()
