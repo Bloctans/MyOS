@@ -1,4 +1,4 @@
--- send a request to https://api.github.com/repos/Bloctans/REPONAME/releases/latest
+-- send a request to https://api.github.com/repos/Bloctans/MyOS/releases/latest
 -- get the asset with label "update package"
 
 -- UPDATER:
