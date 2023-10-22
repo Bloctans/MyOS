@@ -2,44 +2,47 @@
     DONE:
         - Component API
         - require API
-        - Base Shell
+        - Base Shell (edit line, new line, render, get current line)
         - Base Shell: clear terminal
         - Base Shell: go back a line
         - Base Error Handler (for boot.lua in init.lua)
         - Keyboard API
-        - Shell
+        - Shell (init, render)
         - Shell: Enter to newline
         - Signals: move keyboard logic to lua script
         - Shell: Backspace
         - Run file: Error handler
         - Shell: run / Run file
+        - Run file: cls
+        - Run file: Error handler Details
 
     DOING:
+        - Run file: dir / List Current DIR
 
     DO:
-        - Run file: Error handler Details
-        - Run file: dir / List Current DIR
         - Code Comments
 
     Alpha 1.0:  
-        - Shell: edit / Edit file
-        - Shell: Updates
+        - Shell: Check for update
         - OpenOS: Installer
         - MineOS: Installer
+        - Run file: update
 
     Alpha 1.1 (Program update):
-        - Make Run integrated into enter handle (instead of you having to do run [file])
+        - Run file: edit / Edit file
+        - Run file: create / Create file
+        - Dir: List file sizes and creation dates
         - Processes
         - Run file: CTRL + C
-        - Base Error Handler: fix strings
 
     Alpha 1.2:
-        - Shell: cd / Change Current DIR
+        - Base Error Handler: fix strings
+        - Make Run integrated into enter handle (instead of you having to do run [file])
         - Run file: Sandbox
-        - Run file: Run files from bin, not sys.
         - Main shell: Wrap around text once it hits the edge of screen
 
     Alpha 1.3:
+        - Shell: cd / Change Current DIR
         - Base Shell: Optimize/Rewrite
         - Base Shell: keep last 4 lines in table
         - Rewrite all the bad things (currently only shell commands)

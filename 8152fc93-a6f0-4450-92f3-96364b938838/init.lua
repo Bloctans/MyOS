@@ -68,7 +68,14 @@ local lines = {}
 
 if not ok then
     for s in err:gmatch("[^\r\n]+") do
-        table.insert(lines, s)
+        new = ""
+        for i = 1, #s do
+            local c = s:sub(i,i)
+            if c:byte() > 31 then
+                new = new..c
+            end
+        end
+        table.insert(lines, new)
     end
     invoke(gpu,"set",1,10,"A surious error occured.  ")
     invoke(gpu,"set",1,11,"Click to view error.  ")

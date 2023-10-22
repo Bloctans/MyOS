@@ -20,14 +20,20 @@ end
 function shell.handle_enter()
     local split = strutil.splitspace(shell.current)
     if split[1] == "run" then
-        stop = true
-        runfile.run(shell.runfilepath..split[2])
-        shell.current = ""
-    else
-
-        shell.current = ""
-        baseshell.newline()
+        if split[2] then
+            runfile.run(shell.runfilepath..split[2])
+        else
+            baseshell.new("Input a file! (run dir to list)")
+        end
+    elseif split[1] == "help" or split[1] == "cmds" or split[1] == "commands" then
+        baseshell.new("Help: ")
+        baseshell.new(" run [file]: Run file")
+        baseshell.new(" run dir: List programs")
+        baseshell.new("  For now, in order to create/edit programs you need to")
+        baseshell.new("  do that via external OS")
     end
+    shell.current = ""
+    baseshell.newline()
 end
 
 function shell.render()

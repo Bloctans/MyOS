@@ -6,7 +6,6 @@ keymap = {
 }
 
 function keyboard.luasignal(sig)
-    -- TODO: move this to keyboard.lua
     if sig >= 32 then
         return "key", unicode.char(sig)
     else

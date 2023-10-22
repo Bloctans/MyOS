@@ -6,10 +6,15 @@ function runfile.run(path)
     baseshell.newline()
     if not ok then
         baseshell.new("Error Running file")
+        baseshell.new("Details:")
+
+        local _err = strutil.linebreaks(err,8)
+        for i,v in pairs(_err) do
+            baseshell.new(v)
+        end
     else
         baseshell.new("Sucessfully ran file")
     end
-    baseshell.newline() -- weird behavior
 end
 
 return runfile

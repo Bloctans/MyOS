@@ -1,7 +1,11 @@
 _G.components = {}
-local componentsused = {"gpu","computer","keyboard"}
+local componentsused = {"gpu","computer","keyboard","filesystem"}
 for _,v in pairs(componentsused) do
-    _G.components[v] = component.proxy(component.list(v)())
+    if v == "filesystem" then
+        _G.components[v] = computer.getBootAddress()
+    else
+        _G.components[v] = component.proxy(component.list(v)())
+    end
 end
 
 _G.component = nil

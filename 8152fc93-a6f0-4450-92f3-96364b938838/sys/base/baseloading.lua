@@ -17,12 +17,11 @@ function loading.loadfile(_path)
     else error("Compilation error:"..err) end
 end
 
--- TODO: name vars lol
 function loading.require(_path)
-    local c = loading.loadfile(_path)
-    c()
+    local file = loading.loadfile(_path)
+    file()
 
-    return select(2, pcall(c))
+    return select(2, pcall(file))
 end
 
 function loading.loadandinit(_path)
