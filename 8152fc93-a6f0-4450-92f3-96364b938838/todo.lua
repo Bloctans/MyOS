@@ -25,8 +25,8 @@
 
     Alpha 1.0:  
         - OpenOS: Installer
-        - Shell: Check for update
         - MineOS: Installer
+        - Run file: Check for update
         - Run file: update
 
     Alpha 1.1 (Program update):

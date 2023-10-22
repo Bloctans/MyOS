@@ -5,8 +5,10 @@ loading = {}
 
 invoke = component.invoke
 
-function loading.loadfile(_path)
-    _path = MPath(_path)..".lua"
+function loading.loadfile(_path, nodompath)
+    if not nodompath then
+        _path = MPath(_path)..".lua"
+    end
     local handle = assert(invoke(addr, "open", _path))
     local readed = invoke(addr, "read", handle, math.maxinteger or math.huge)
     invoke(addr, "close", handle)

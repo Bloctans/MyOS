@@ -1,5 +1,6 @@
 _G.components = {}
 local componentsused = {"gpu","computer","keyboard","filesystem"}
+
 for _,v in pairs(componentsused) do
     if v == "filesystem" then
         _G.components[v] = component.proxy(bootaddr)

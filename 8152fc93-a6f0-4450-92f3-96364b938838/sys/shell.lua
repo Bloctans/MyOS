@@ -13,7 +13,7 @@ function shell.init()
     baseshell.new("SysRoot: ".._G.ROOT.._G.SYSROOT)
     baseshell.new("Running on ".._VERSION)
     baseshell.new("Warning: This OS is pretty basic as of now.")
-    baseshell.new("DO NOT PUT WHILE TRUE LOOPS IN YOUR PROGRAMS!")
+    baseshell.new("Be sure to run updatechk every once in a while!")
     baseshell.newlines()
 end
 

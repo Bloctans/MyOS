@@ -1,8 +1,7 @@
 local gpu = component.list("gpu")()
 _G.bootaddr = computer.getBootAddress()
 
-_G._OSVERSION = "BlocOS Alpha 0.4"
-component.invoke(gpu,"set",1,1,_G._OSVERSION)
+component.invoke(gpu,"set",1,1,"Starting OS...")
 
 component.invoke(gpu,"set",1,2,"Start MPath")
 
@@ -27,6 +26,8 @@ function errorwrap()
     local err, result = pcall(func)
 
     _G.baseloading = result
+
+    baseloading.loadfile("osver.lua", true)()
 
     -- start boot script
     component.invoke(gpu,"set",1,4,"Start Boot script")

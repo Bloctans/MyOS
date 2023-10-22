@@ -1,0 +1,12 @@
+-- send a request to https://api.github.com/repos/Bloctans/REPONAME/releases/latest
+-- get the asset with label "update package"
+
+-- UPDATER:
+-- update osver
+-- rename init to osinit
+-- get the lua update file from the api response
+-- put response into updateinit
+-- make new init that will boot into updateinit
+-- reboot
+-- once lua update is done, delete init and rename osinit to init
+-- reboot
