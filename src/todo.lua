@@ -21,7 +21,6 @@
     DOING:
 
     DO:
-        - Code Comments
 
     Alpha 1.0:  
         - OpenOS: Installer
@@ -50,6 +49,9 @@
         - Base Shell: keep last 4 lines in table
         - Rewrite all the bad things (currently only shell commands)
         - OS: User Management or somethin
+
+    Maybe:
+        - Code Comments
 ]]
 
 --[[
