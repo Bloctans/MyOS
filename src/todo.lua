@@ -19,11 +19,12 @@
         - Run file: dir / List Current DIR
 
     DOING:
+        - OpenOS: Installer
+        - Boot: Installer
 
     DO:
 
     Alpha 1.0:  
-        - OpenOS: Installer
         - MineOS: Installer
         - Run file: Check for update
         - Run file: update
