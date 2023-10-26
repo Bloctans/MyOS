@@ -46,6 +46,7 @@
         - Main shell: Wrap around text once it hits the edge of screen
 
     Alpha 1.3:
+        - Graphics mode (draw pixels)
         - Shell: cd / Change Current DIR
         - Base Shell: Optimize/Rewrite
         - Base Shell: keep last 4 lines in table
