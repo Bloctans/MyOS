@@ -1,5 +1,8 @@
 --[[
     Boot Installer:
-        request installer/Install.cfg in gh repo (rawgithubusercontent)
-        add .lua to end of each
+        format drive
+        get all os files
+        copy os files
+        remove installer files
+        TODO: THIS
 ]]

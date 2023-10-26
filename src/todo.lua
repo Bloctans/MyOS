@@ -20,9 +20,9 @@
 
     DOING:
         - OpenOS: Installer
-        - Boot: Installer
 
     DO:
+        - Boot: Installer
 
     Alpha 1.0:  
         - MineOS: Installer
@@ -42,6 +42,7 @@
         - Dir: paths
         - Make Run integrated into enter handle (instead of you having to do run [file])
         - Run file: Sandbox
+        - Run file: Ability to either sandbox or unsandbox a program
         - Main shell: Wrap around text once it hits the edge of screen
 
     Alpha 1.3:
