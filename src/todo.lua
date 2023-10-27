@@ -17,12 +17,13 @@
         - Run file: Error handler Details
         - Base Error Handler: fix strings
         - Run file: dir / List Current DIR
+        - OpenOS: Installer Part 1
 
     DOING:
-        - OpenOS: Installer
+        - Boot: Installer
 
     DO:
-        - Boot: Installer
+        - OpenOS: Installer Part 2 (Copy installer files)
 
     Alpha 1.0:  
         - MineOS: Installer

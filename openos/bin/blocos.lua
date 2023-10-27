@@ -1,13 +1,16 @@
 --[[
     Pre installer:
-        ask user if they wanna install (Done)
-        install to what hard disk (Done)
-        if data found, ask if they want to quit (to switch out the hard drive) or format the hard drive
-        make folder for installer files
-        copy installer files
-        ask for reboot
-        ask for openloader to be installed if it doesnt upon reboot
-        reboot
+        Pre Install (Done):
+            ask user if they wanna install (Done)
+            install to what hard disk (Done)
+            if data found, ask if they want to quit (to switch out the hard drive) or format the hard drive (Done)
+
+        Install:
+            make folder for installer files (DONE)
+            copy installer files
+            ask for reboot
+            ask for openloader to be installed if it doesnt upon reboot
+            reboot
 ]]
 
 io.write("Are you sure you wanna install this? [Y/N] ")
@@ -52,7 +55,7 @@ local targets = {}
 
 for dev,src in pairs(devices) do
     local selection_label = (src.prop or {}).label or dev.getLabel()
-    targets[installnum] = dev.address
+    targets[installnum] = {dev.address,dev}
     if selection_label then
         io.write(installnum..". "..selection_label.."\n")
     else
@@ -81,5 +84,35 @@ if not tonumber(InstallTarget) then
     installabort()
 end
 
-local InstallFS = fs.open(targets[tonumber(InstallTarget)])
+local Target = targets[tonumber(InstallTarget)]
+local InstallFS = Target[2]
+local Address = Target[1]
 
+if InstallFS.isReadOnly() then
+    io.write("This Drive is read only.")
+    installabort()
+end
+
+cls()
+
+if #InstallFS.list("/") > 0 then
+    io.write("Data Was found on your selected drive.\n")
+    io.write("Data in question:\n")
+    
+    for i,v in pairs(InstallFS.list("/")) do
+        io.write(v.."\n")
+    end
+
+    io.write("\nFormat or End Installation? [Format/End] ")
+    local DriveDataChoice = io.read()
+    if string.lower(DriveDataChoice) ~= "format" then
+        io.write("No files have been changed.")
+        installabort()
+    end
+end
+
+io.write("Formatting will occur after installer files are copied.")
+
+InstallFS.makeDirectory("/installer")
+
+--InstallFS.setLabel("BlocOS Install Target")
