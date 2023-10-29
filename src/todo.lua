@@ -26,6 +26,7 @@
         - OpenOS: Installer Part 2 (Copy installer files)
 
     Alpha 1.0:  
+        - GPU: setup res and fill at boot
         - MineOS: Installer
         - Run file: Check for update
         - Run file: update
@@ -37,6 +38,7 @@
         - Dir: List file sizes and creation dates
         - Processes
         - Run file: CTRL + C
+        - Check for hard drive
 
     Alpha 1.2:
         - Run file: Config

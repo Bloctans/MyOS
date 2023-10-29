@@ -6,7 +6,7 @@
             if data found, ask if they want to quit (to switch out the hard drive) or format the hard drive (Done)
 
         Install:
-            make folder for installer files (DONE)
+            make folder for installer files (maybe)
             copy installer files
             ask for reboot
             ask for openloader to be installed if it doesnt upon reboot
@@ -113,6 +113,6 @@ end
 
 io.write("Formatting will occur after installer files are copied.")
 
-InstallFS.makeDirectory("/installer")
+--InstallFS.makeDirectory("/installer")
 
 --InstallFS.setLabel("BlocOS Install Target")
