@@ -56,6 +56,9 @@
         - Rewrite all the bad things (currently only shell commands)
         - OS: User Management or somethin
 
+    Alpha 1.4:
+        - API rewrites
+
     Maybe:
         - Code Comments
 ]]
