@@ -113,6 +113,4 @@ end
 
 io.write("Formatting will occur after installer files are copied.")
 
---InstallFS.makeDirectory("/installer")
-
---InstallFS.setLabel("BlocOS Install Target")
+InstallFS.setLabel("BlocOS Install Target")

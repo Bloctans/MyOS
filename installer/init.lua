@@ -1,4 +1,6 @@
-_G._OSVERSION = "BlocOS Installer v0.1"
+_G._OSVERSION = "BlocOS Installer v0.5"
+
+filesystem.setLabel("BlocOS Installer")
 
 function halt()
     while true do
@@ -39,8 +41,12 @@ status("You can no longer exit out of the installer")
 InstallListHandle = filesystem.open("/InstallList.lua")
 InstallListFile = filesystem.read(InstallListHandle, math.maxinteger or math.huge)
 filesystem.close(InstallListHandle)
+local func,err = load(InstallListFile, "=/InstallList.lua", "bt", _G)
+if not func then
+    error("Compilation error:"..err) 
+end
 
-InstallList = load(InstallListFile, "bt", _G)
+InstallList = select(2, pcall(func))
 
 -- Download & install files
 
@@ -68,32 +74,41 @@ function Request(path)
 end
 
 function Download(path)
-    status("Downloading "..path)
+    status(path)
     local Content = Request(path)
 
-    status("Making File...")
-    if file == "init.lua" then
+    if path == "/init.lua" then
         local inithandle = filesystem.open("/osinit.lua", "w")
         filesystem.write(inithandle, Content)
         filesystem.close(inithandle)
     else
-        local handle = filesystem.open(fullpath, "w")
+        local handle = filesystem.open(path, "w")
         filesystem.write(handle, Content)
         filesystem.close(handle)
     end
 end
 
 
-Download("/init.lua")
-
---[[for i,v in pairs(InstallList) do
-    for i2,v2 in pairs(InstallList[v]) do
-        
+for i,v in pairs(InstallList["os"]) do
+    status("Make dir for "..i)
+    if i ~= "/" then
+        filesystem.makeDirectory(i)
     end
-end]]
 
--- set labels and stuff
+    for i2,v2 in pairs(InstallList["os"][i]) do
+        Download(i..v2)
+    end
+end
+
+status("Done Installing!")
+
 -- Cleanup installer
+
+
+-- Set label
+
+filesystem.setLabel("BlocOS")
+
 -- Reboot
 
 halt()

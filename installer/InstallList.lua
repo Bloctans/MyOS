@@ -6,21 +6,21 @@ install_list = {
             "init.lua",
             "osver.lua"
         },
-        ["/sys"] = {
+        ["/sys/"] = {
             "keyboard.lua",
             "runfile.lua",
             "runfile.lua",
             "shell.lua",
             "signal.lua",
-            "strutil.lua",
+            "strutil.lua"
         },
-        ["/sys/base"] = {
+        ["/sys/base/"] = {
             "baseloading.lua",
             "baseshell.lua",
             "boot.lua",
-            "components.lua",
+            "components.lua"
         },
-        ["/sys/programs"] = {
+        ["/sys/programs/"] = {
             "cls.lua",
             "dir.lua",
             "reboot.lua",
