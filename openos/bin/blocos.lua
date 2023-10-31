@@ -112,27 +112,28 @@ if #InstallFS.list("/") > 0 then
 end
 
 io.write("Formatting will occur after installer files are copied")
-io.write("And the computer restarts.")
+io.write("And the computer restarts.\n")
 
 InstallFS.setLabel("BlocOS Install Target")
 
 local internet = require("internet")
  
 function Download(path)
-    io.write("Installing "..path)
+    io.write("Installing "..path.."\n")
     local handle = internet.request("https://raw.githubusercontent.com/Bloctans/MyOS/main/installer"..path)
     local result = ""
     for chunk in handle do result = result..chunk end
 
-    local file = InstallFS.open(path, "w")
-    file:write(result)
-    file:close()
+    local fhandle,r = InstallFS.open(path, "w")
+
+    InstallFS.write(fhandle, result)
+    InstallFS.close(fhandle)
 end
 
 local component = require("component")
 
 function Download_OpenLoader()
-    io.write("Flashing OpenLoader")
+    io.write("\nFlashing OpenLoader (DO NOT RESTART YOUR PC)\n")
     local handle = internet.request("https://raw.githubusercontent.com/MightyPirates/OpenComputers/master/src/main/resources/assets/opencomputers/loot/openloader/init.lua")
     local result = ""
     for chunk in handle do result = result..chunk end

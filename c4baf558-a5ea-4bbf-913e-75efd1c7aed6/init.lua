@@ -1,5 +1,7 @@
 _G._OSVERSION = "BlocOS Installer v0.5"
 
+filesystem.setLabel("BlocOS Installer")
+
 function halt()
     while true do
         computer.pullSignal()
@@ -16,8 +18,6 @@ for _,v in pairs({"gpu","keyboard","filesystem","internet"}) do
         _G[v] = component.proxy(component.list(v)())
     end
 end
-
-filesystem.setLabel("BlocOS Installer")
 
 y = 1
 
