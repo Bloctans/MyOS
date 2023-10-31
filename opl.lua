@@ -1,4 +1,4 @@
-_G._OSVERSION = "OpenLoader 0.3 (Edited)"
+_G._OSVERSION = "OpenLoader 0.2EE"
 local component = component or require('component')
 local computer = computer or require('computer')
 local unicode = unicode or require('unicode')
@@ -15,43 +15,29 @@ local gpu = component.list("gpu")()
 local w, h
 
 local screen = component.list('screen')()
-
-local function gpucast(op, arg, ...)
-    local res = {}
-    local n = 1
-    for address in component.list('screen') do
-        component.invoke(gpu, "bind", address)
-        if type(arg) == "table" then
-            res[#res + 1] = {component.invoke(gpu, op, table.unpack(arg[n]))}
-        else
-            res[#res + 1] = {component.invoke(gpu, op, arg, ...)}
-        end
-        n = n + 1
+for address in component.list('screen') do
+    if #component.invoke(address, 'getKeyboards') > 0 then
+        screen = address
     end
-    return res
 end
 
 local cls = function()end
 if gpu and screen then
-    --component.invoke(gpu, "bind", screen)
+    component.invoke(gpu, "bind", screen)
     w, h = component.invoke(gpu, "getResolution")
-    local res = gpucast("getResolution")
-    gpucast("setResolution", res)
-    for _, e in ipairs(res)do
-        table.insert(e, 1, 1)
-        table.insert(e, 1, 1)
-        e[#e+1] = " "
-    end
-    gpucast("fill", res)
-    cls = function()gpucast("fill", res)end
+    component.invoke(gpu, "setResolution", w, h)
+    component.invoke(gpu, "setBackground", 0x000000)
+    component.invoke(gpu, "setForeground", 0xFFFFFF)
+    component.invoke(gpu, "fill", 1, 1, w, h, " ")
+    cls = function()component.invoke(gpu,"fill", 1, 1, w, h, " ")end
 end
 local y = 1
 local function status(msg)
     if gpu and screen then
-        gpucast("set", 1, y, msg)
+        component.invoke(gpu, "set", 1, y, msg)
         if y == h then
-            gpucast("copy", 1, 2, w, h - 1, 0, -1)
-            gpucast("fill", 1, h, w, 1, " ")
+            component.invoke(gpu, "copy", 1, 2, w, h - 1, 0, -1)
+            component.invoke(gpu, "fill", 1, h, w, 1, " ")
         else
             y = y + 1
         end
@@ -59,6 +45,7 @@ local function status(msg)
 end
 
 local function loadfile(fs, file)
+    --status("> " .. file)
     local handle, reason = component.invoke(fs,"open",file)
     if not handle then
         error(reason)
@@ -78,7 +65,7 @@ end
 local function dofile(fs, file)
     local program, reason = loadfile(fs, file)
     if program then
-        local result = table.pack(true, program())
+        local result = table.pack(pcall(program))
         if result[1] then
             return table.unpack(result, 2, result.n)
         else
@@ -96,11 +83,6 @@ local function boot(kernel)
     dofile(kernel.address, kernel.fpx .. kernel.file)
 end
 
-local function labelText(fs)
-  local lbl = component.invoke(fs, "getLabel")
-  if lbl then return " ('"..lbl.."')" else return "" end
-end
-
 status(_OSVERSION)
 status("Select what to boot:")
 
@@ -110,10 +92,10 @@ for fs in component.list("filesystem") do
     if component.invoke(fs, "isDirectory", "boot/kernel/")then
         for _,file in ipairs(component.invoke(fs, "list", "boot/kernel/")) do
             osList[#osList+1] = {fpx = "boot/kernel/", file = file, address = fs}
-            status(tostring(#osList).."."..file)
+            status(tostring(#osList).."."..file.." from "..(fs:sub(1,3)))
         end
     end
-    if fs ~= computer.getBootAddress() and component.invoke(fs, "exists", "init.lua") then
+    if component.invoke(fs, "exists", "init.lua") then
         local osName = "init.lua"
         if component.invoke(fs, "exists", ".osprop") then
             pcall(function()
@@ -122,10 +104,13 @@ for fs in component.list("filesystem") do
             end)
         end
         osList[#osList+1] = {fpx = "", file = "init.lua", address = fs}
-        status(tostring(#osList).."."..osName)
+        status(tostring(#osList).."."..osName.." from "..(fs:sub(1,3)))
     end
 end
 status("Select os: ")
+if #osList == 1 then
+    boot(osList[1])
+end
 if #osList == 0 then
     error("No OS found")
     while true do computer.pullSignal() end

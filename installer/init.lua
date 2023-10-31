@@ -33,6 +33,16 @@ end
 
 -- Format
 
+status("Formatting...")
+
+for i,v in pairs(filesystem.list("/")) do
+    if v ~= "init.lua" then
+        if v ~= "InstallList.lua" then
+            filesystem.remove(v)
+        end
+    end
+end
+
 -- Start install
 
 status("Your Computer will now start installing Blocos.")
