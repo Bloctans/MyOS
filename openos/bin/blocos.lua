@@ -134,7 +134,7 @@ local component = require("component")
 
 function Download_OpenLoader()
     io.write("\nFlashing OpenLoader (DO NOT RESTART YOUR PC)\n")
-    local handle = internet.request("https://raw.githubusercontent.com/MightyPirates/OpenComputers/master/src/main/resources/assets/opencomputers/loot/openloader/init.lua")
+    local handle = internet.request("https://raw.githubusercontent.com/Bloctans/MyOS/main/opl.lua")
     local result = ""
     for chunk in handle do result = result..chunk end
 

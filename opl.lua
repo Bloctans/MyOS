@@ -37,8 +37,6 @@ if gpu and screen then
     w, h = component.invoke(gpu, "getResolution")
     local res = gpucast("getResolution")
     gpucast("setResolution", res)
-    gpucast("setBackground", 0x000000)
-    gpucast("setForeground", 0xFFFFFF)
     for _, e in ipairs(res)do
         table.insert(e, 1, 1)
         table.insert(e, 1, 1)
@@ -61,7 +59,6 @@ local function status(msg)
 end
 
 local function loadfile(fs, file)
-    --status("> " .. file)
     local handle, reason = component.invoke(fs,"open",file)
     if not handle then
         error(reason)
@@ -147,6 +144,3 @@ while true do
 end
 error("System crashed")
 while true do computer.pullSignal() end
-
-
-

@@ -18,10 +18,10 @@
         - Base Error Handler: fix strings
         - Run file: dir / List Current DIR
         - OpenOS: Installer Part 1
+        - OpenOS: Installer Part 2 (Copy installer files)
 
     DOING:
         - Boot: Installer
-        - OpenOS: Installer Part 2 (Copy installer files)
 
     Alpha 1.0:  
         - GPU: setup res and fill at boot
