@@ -1,5 +1,0 @@
--- send a request to https://api.github.com/repos/Bloctans/MyOS/releases/latest
--- check if version is not the same as current
--- if so, prompt user to update
--- if user accepts then start update.lua
--- if not then exit

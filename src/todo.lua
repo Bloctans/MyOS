@@ -1,18 +1,18 @@
 --[[
     DONE:
-        - Component API
-        - require API
-        - Base Shell (edit line, new line, render, get current line)
+        - System: Component API
+        - System: require API
+        - System: Base Shell (edit line, new line, render, get current line)
         - Base Shell: clear terminal
         - Base Shell: go back a line
-        - Base Error Handler (for boot.lua in init.lua)
-        - Keyboard API
+        - Boot: Base Error Handler (for boot.lua in init.lua)
+        - System: Keyboard API
         - Shell (init, render)
         - Shell: Enter to newline
         - Signals: move keyboard logic to lua script
         - Shell: Backspace
         - Run file: Error handler
-        - Shell: run / Run file
+        - Shell/System: Run files (run)
         - Run file: cls
         - Run file: Error handler Details
         - Base Error Handler: fix strings
@@ -22,10 +22,10 @@
         - Boot: Installer
 
     DOING:
+        - Boot: setup gpu res and fill
 
-    Alpha 1.0:  
-        - GPU: setup res and fill at boot
-        - Run file: Check for update
+    Alpha 1.0 (Initial release):  
+        - Shell/System: Update check
         - Run file: update
 
     Alpha 1.1 (Program and Graphics update):
@@ -37,17 +37,22 @@
         - Run file: edit / Edit file
         - Run file: create / Create file
         - Run file: integrate into enter handle (instead of you having to do run [file])
-        - Processes
+        - System: Processes
         - Run file: CTRL + C
-        - Fix shell input lag (and keyboard)
-
+        - Signals: Move to a different process (thread) for better performance
+        - Processes: Move baseshell and shell to process
+        - Processes: Move run to a process
+        
     Alpha 1.2 (Security and QOL Update):
+        - Blinking cursor
         - Dir: paths
         - Dir: List file sizes and creation dates
         - Check for hard drive
         - Run file: Sandbox
+        - Run file: Check if exists
         - Run file: Ability to either sandbox or unsandbox a program
-        - Main shell: Wrap around text once it hits the edge of screen
+        - Run file: List Processes
+        - Shell: \n support
 
     Alpha 1.3 (Rewrite and settings):
         - Run file: Config
@@ -56,13 +61,17 @@
         - Base Shell: keep last 4 lines in table
         - Rewrite all the bad things (currently only shell commands)
         - OS: User Management or somethin
+        - Main shell: Wrap around text once it hits the edge of screen
 
     Alpha 1.4:
         - MineOS: Installer
-        - API rewrites
+        - API rewrites (signal events)
+        - Shell: input lag (and keyboard)
 
-    Maybe:
-        - Code Comments
+    Alpha 1.5:
+        - Feature: Graphical Shell Program (Windows 1.0 without 2 windows at once)
+        - Run file: New process
+        - Run file: End process
 ]]
 
 --[[

@@ -1,7 +1,7 @@
 local gpu = component.list("gpu")()
 _G.bootaddr = computer.getBootAddress()
 
-component.invoke(gpu,"set",1,1,"Starting OS...")
+component.invoke(gpu,"set",1,1,"Init Script:")
 
 component.invoke(gpu,"set",1,2,"Start MPath")
 
@@ -28,9 +28,10 @@ function errorwrap()
     _G.baseloading = result
 
     baseloading.loadfile("osver.lua", true)()
+    component.invoke(gpu,"set",1,4,"Load osver (".._G._OSVERSION..")")
 
     -- start boot script
-    component.invoke(gpu,"set",1,4,"Start Boot script")
+    component.invoke(gpu,"set",1,6,"Boot script:")
     baseloading.loadandinit("base/boot")
 end
 
@@ -52,10 +53,10 @@ if not ok then
         end
         table.insert(lines, new)
     end
-    invoke(gpu,"set",1,10,"A surious error occured.  ")
-    invoke(gpu,"set",1,11,"Click to view error.  ")
-    invoke(gpu,"set",1,12,"Press any key to restart.  ")
-    invoke(gpu,"set",1,13,"                                 ")
+    invoke(gpu,"set",1,1,"A surious error occured.  ")
+    invoke(gpu,"set",1,2,"Click to view error.  ")
+    invoke(gpu,"set",1,3,"Press any key to restart.  ")
+    invoke(gpu,"set",1,4,"                              ")
     computer.beep(1000,0.5)
 end
 
@@ -67,6 +68,6 @@ while true do
     if sigerr[1] == "key_down" then
         computer.shutdown(true)
     elseif sigerr[1] == "touch" then
-        for i,v in pairs(lines) do invoke(gpu,"set",1,i+13,v.."  ") end
+        for i,v in pairs(lines) do invoke(gpu,"set",1,i+4,v.."  ") end
     end
 end

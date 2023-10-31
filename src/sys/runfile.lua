@@ -8,7 +8,7 @@ function runfile.run(path)
         baseshell.new("Error Running file")
         baseshell.new("Details:")
 
-        local _err = strutil.linebreaks(err,8)
+        local _err = strutil.linebreaks(err,6)
         for i,v in pairs(_err) do
             baseshell.new(v)
         end

@@ -13,7 +13,6 @@ function shell.init()
     baseshell.new("SysRoot: ".._G.ROOT.._G.SYSROOT)
     baseshell.new("Running on ".._VERSION)
     baseshell.new("Warning: This OS is pretty basic as of now.")
-    baseshell.new("Be sure to run updatechk every once in a while!")
     baseshell.newlines()
 end
 
@@ -31,7 +30,7 @@ function shell.handle_enter()
         baseshell.new(" run dir: List programs")
         baseshell.new("  For now, in order to create/edit programs you need to")
         baseshell.new("  do that via external OS")
-    elseif split[1] ~= "" then
+    elseif shell.current ~= "" then
         baseshell.new("Invalid Command: "..split[1])
     end
     
@@ -40,9 +39,6 @@ function shell.handle_enter()
 end
 
 function shell.render()
-    baseshell.render()
-    baseshell.edit(shell.start..shell.current)
-
     type_,key = signal.get("key_down")
     if type_ == "key" then
         shell.current = shell.current..key
@@ -53,6 +49,9 @@ function shell.render()
             shell.current = string.sub(shell.current, 1, #shell.current - 1)
         end
     end
+
+    baseshell.edit(shell.start..shell.current)
+    baseshell.render()
 end
 
 return shell
