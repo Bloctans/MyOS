@@ -133,11 +133,12 @@ end
 local component = require("component")
 
 function Download_OpenLoader()
-    io.write("\nFlashing OpenLoader (DO NOT RESTART YOUR PC)\n")
+    io.write("\nFetching Openloader\n")
     local handle = internet.request("https://raw.githubusercontent.com/Bloctans/MyOS/main/opl.lua")
     local result = ""
     for chunk in handle do result = result..chunk end
 
+    io.write("\nFlashing OpenLoader (DO NOT RESTART YOUR PC)\n")
     component.eeprom.set(result)
     component.eeprom.setLabel("OpenLoader")
 end
