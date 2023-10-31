@@ -110,16 +110,16 @@ for i,v in pairs(InstallList["os"]) do
     end
 end
 
-status("Done Installing!")
+status("Done Installing! Cleaning up...")
 
 -- Cleanup installer
 
-
-
--- Set label
+filesystem.remove("/init.lua")
+filesystem.rename("/osinit.lua", "/init.lua")
 
 filesystem.setLabel("BlocOS")
 
 -- Reboot
 
-halt()
+status("Shutting down")
+computer.shutdown(true)
