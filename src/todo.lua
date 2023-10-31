@@ -21,35 +21,35 @@
 
     DOING:
         - Boot: Installer
-
-    DO:
         - OpenOS: Installer Part 2 (Copy installer files)
 
     Alpha 1.0:  
         - GPU: setup res and fill at boot
-        - MineOS: Installer
         - Run file: Check for update
         - Run file: update
 
-    Alpha 1.1 (Program update):
+    Alpha 1.1 (Program and Graphics update):
+        - Graphics mode 
+            (draw pixels w/ braile) 
+            (320 x 200 at 2 colors per 2x4 pixels)
+            (look at far bottom of todo list for bit to braile)
         - Unhardcode current DIR
         - Run file: edit / Edit file
         - Run file: create / Create file
-        - Dir: List file sizes and creation dates
+        - Run file: integrate into enter handle (instead of you having to do run [file])
         - Processes
         - Run file: CTRL + C
-        - Check for hard drive
 
-    Alpha 1.2:
-        - Run file: Config
+    Alpha 1.2 (Security and QOL Update):
         - Dir: paths
-        - Make Run integrated into enter handle (instead of you having to do run [file])
+        - Dir: List file sizes and creation dates
+        - Check for hard drive
         - Run file: Sandbox
         - Run file: Ability to either sandbox or unsandbox a program
         - Main shell: Wrap around text once it hits the edge of screen
 
-    Alpha 1.3:
-        - Graphics mode (draw pixels)
+    Alpha 1.3 (Rewrite and settings):
+        - Run file: Config
         - Shell: cd / Change Current DIR
         - Base Shell: Optimize/Rewrite
         - Base Shell: keep last 4 lines in table
@@ -57,10 +57,21 @@
         - OS: User Management or somethin
 
     Alpha 1.4:
+        - MineOS: Installer
         - API rewrites
 
     Maybe:
         - Code Comments
+]]
+
+--[[
+    If you number each bit of a byte like 0b12345678 then a braille
+    character looks like:
+
+        8  5
+        7  4
+        6  3
+        2  1
 ]]
 
 --[[

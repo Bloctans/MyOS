@@ -28,9 +28,6 @@ install_list = {
             "test.lua",
             "update.lua"
         }
-    },
-    ["installer"] = {
-        -- TODO
     }
 }
 
