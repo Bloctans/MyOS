@@ -19,9 +19,9 @@
         - Run file: dir / List Current DIR
         - OpenOS: Installer Part 1
         - OpenOS: Installer Part 2 (Copy installer files)
+        - Boot: Installer
 
     DOING:
-        - Boot: Installer
 
     Alpha 1.0:  
         - GPU: setup res and fill at boot
@@ -39,6 +39,7 @@
         - Run file: integrate into enter handle (instead of you having to do run [file])
         - Processes
         - Run file: CTRL + C
+        - Fix shell input lag (and keyboard)
 
     Alpha 1.2 (Security and QOL Update):
         - Dir: paths
