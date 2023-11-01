@@ -138,7 +138,7 @@ function Download_OpenLoader()
     local result = ""
     for chunk in handle do result = result..chunk end
 
-    io.write("\nFlashing OpenLoader (DO NOT RESTART YOUR PC)\n")
+    io.write("Flashing OpenLoader (DO NOT RESTART YOUR PC)\n")
     component.eeprom.set(result)
     component.eeprom.setLabel("OpenLoader")
 end

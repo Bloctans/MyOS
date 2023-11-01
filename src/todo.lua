@@ -20,9 +20,9 @@
         - OpenOS: Installer Part 1
         - OpenOS: Installer Part 2 (Copy installer files)
         - Boot: Installer
+        - Boot: setup gpu res and fill
 
     DOING:
-        - Boot: setup gpu res and fill
 
     Alpha 1.0 (Initial release):  
         - Shell/System: Update check

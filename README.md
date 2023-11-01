@@ -1,0 +1,1 @@
+Get installer: `wget 'https://raw.githubusercontent.com/Bloctans/MyOS/main/blocos.lua' blocos.lua`
