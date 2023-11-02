@@ -3,7 +3,8 @@
 status("Initalizing libs")
 _G.strutil = require("strutil")
 _G.signal = require("signal")
-_G.graphics = require("newapis/graphics")
+
+package.loadandinit("newapis/graphlibs/graphicsload")
 
 status("Starting shell...")
 shell = require("shell")
@@ -16,6 +17,6 @@ while true do
     if not graphicsmode then
         shell.render()
     else
-        
+        graphics_core.loop()
     end
 end

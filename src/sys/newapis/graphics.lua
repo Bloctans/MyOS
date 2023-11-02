@@ -1,17 +1,15 @@
--- Core for the graphics mode (320 x 200)
-
 graphics = {}
 
 function graphics.start()
-    _G.graphicsmode = true
+    graphics_core.start()
 end
 
-function graphics.loop()
-    -- Braille parse and stuff
+function graphics.stop()
+
 end
 
-function graphics.end()
-    _G.graphicsmode = false
+function graphics.drawpixel(x,y,color)
+    graphics_core.stop()
 end
 
 return graphics

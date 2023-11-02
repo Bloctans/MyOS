@@ -23,12 +23,16 @@
         - Boot: setup gpu res and fill
 
     DOING:
-
-    DO:
+        - Run file: integrate into enter handle (instead of you having to do run [file])
         - Graphics mode 
             (draw pixels w/ braile) 
             (320 x 200 at 2 colors per 2x4 pixels)
             (look at far bottom of todo list for bit to braile)
+
+
+    DO:
+        - System: Processes
+        - Run file: CTRL + C
 
     Alpha 1.0 (Done)
 
@@ -36,12 +40,10 @@
         - Unhardcode current DIR
         - Run file: edit / Create/Edit file
         - Run file: rm / Remove File
-        - Run file: integrate into enter handle (instead of you having to do run [file])
-        - System: Processes
-        - Run file: CTRL + C
-        - Signals: Move to a different process (thread) for better performance
-        - Processes: Move baseshell and shell to process
         - Processes: Move run to a process
+        - Processes: kernel (+shell and graphics mode) are considered process 0, the main thread
+        - Processes: APIS
+        - Signals: Move to a different process (thread) for better performance
         
     Alpha 1.2 (Security and QOL Update):
         - Blinking cursor
@@ -84,6 +86,18 @@
         7  4
         6  3
         2  1
+
+    We could make a index list like this:
+        1,1 = 8
+        1,2 = 7
+        1,3 = 6
+        1,4 = 2
+        
+        2,1 = 5
+        2,2 = 4
+        2,3 = 3
+        2,4 = 1
+        (and generate it upon startup maybe?)
 ]]
 
 --[[
