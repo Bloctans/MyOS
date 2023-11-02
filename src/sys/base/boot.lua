@@ -20,15 +20,4 @@ _G.package = _G.baseloading
 _G.require = package.require
 _G.baseloading = nil
 
-status("Initalizing libs")
-_G.strutil = require("strutil")
-_G.signal = require("signal")
-
-status("Starting shell...")
-shell = require("shell")
-shell.init()
-status("Waiting for user input...")
-
-while true do
-    shell.render()
-end
+baseloading.loadandinit("kernel")

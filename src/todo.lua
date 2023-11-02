@@ -24,16 +24,18 @@
 
     DOING:
 
-    Alpha 1.0 (Done)
-
-    Alpha 1.1 (Program and Graphics update):
+    DO:
         - Graphics mode 
             (draw pixels w/ braile) 
             (320 x 200 at 2 colors per 2x4 pixels)
             (look at far bottom of todo list for bit to braile)
+
+    Alpha 1.0 (Done)
+
+    Alpha 1.1 (Program and Graphics update):
         - Unhardcode current DIR
-        - Run file: edit / Edit file
-        - Run file: create / Create file
+        - Run file: edit / Create/Edit file
+        - Run file: rm / Remove File
         - Run file: integrate into enter handle (instead of you having to do run [file])
         - System: Processes
         - Run file: CTRL + C
