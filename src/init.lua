@@ -28,7 +28,8 @@ function errorwrap()
     _G.baseloading = result
 
     baseloading.loadfile("osver.lua", true)()
-    component.invoke(gpu,"set",1,4,"Load osver (".._G._OSVERSION..")")
+    _G._OSFULLV = _G._OSVERSION.." (Build #".._G._OSBUILD..")"
+    component.invoke(gpu,"set",1,4,"Load osver (".._G._OSFULLV..")")
 
     -- start boot script
     component.invoke(gpu,"set",1,6,"Boot script:")

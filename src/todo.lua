@@ -24,9 +24,7 @@
 
     DOING:
 
-    Alpha 1.0 (Initial release):  
-        - Shell/System: Update check
-        - Run file: update
+    Alpha 1.0 (Done)
 
     Alpha 1.1 (Program and Graphics update):
         - Graphics mode 
@@ -62,6 +60,8 @@
         - Rewrite all the bad things (currently only shell commands)
         - OS: User Management or somethin
         - Main shell: Wrap around text once it hits the edge of screen
+        - Run file: update
+        - Shell/System: Update check
 
     Alpha 1.4:
         - MineOS: Installer

@@ -9,10 +9,10 @@ shell.start = _G.ROOT.._G.SYSROOT.."programs> "
 function shell.init()
     _G.baseshell = require("base/baseshell")
 
-    baseshell.new("Welcome to ".._G._OSVERSION)
+    baseshell.new("Welcome to ".._G._OSFULLV)
     baseshell.new("SysRoot: ".._G.ROOT.._G.SYSROOT)
     baseshell.new("Running on ".._VERSION)
-    baseshell.new("Warning: This OS is pretty basic as of now.")
+    baseshell.new("Updating currently doesnt exist")
     baseshell.newlines()
 end
 
