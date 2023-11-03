@@ -27,6 +27,7 @@
     DOING:
 
     DO:
+        - Start writing new InstallList
         - System: Processes
         - Run file: CTRL + C
         - Processes: Move run to a process
