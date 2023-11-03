@@ -20,4 +20,6 @@ _G.package = _G.baseloading
 _G.require = package.require
 _G.baseloading = nil
 
+status("")
+status("Kernel:")
 package.loadandinit("kernel")

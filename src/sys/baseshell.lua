@@ -27,6 +27,10 @@ function baseshell.render()
     end
 end
 
+function baseshell.ext_redraw()
+    redrawshell = true
+end
+
 function baseshell.remove()
     redrawshell = true
     if baseshell.currentline > 1 then

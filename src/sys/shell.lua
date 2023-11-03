@@ -7,7 +7,7 @@ shell.current = ""
 shell.start = _G.ROOT.._G.SYSROOT.."programs> "
 
 function shell.init()
-    _G.baseshell = require("base/baseshell")
+    _G.baseshell = require("baseshell")
 
     baseshell.new("Welcome to ".._G._OSFULLV)
     baseshell.new("SysRoot: ".._G.ROOT.._G.SYSROOT)
@@ -18,28 +18,15 @@ end
 
 function shell.handle_enter()
     local split = strutil.splitspace(shell.current)
-    if split[1] == "run" then
-        if split[2] then
-            runfile.run(shell.runfilepath..split[2])
-        else
-            baseshell.new("Input a file! (run dir to list)")
-        end
-    elseif split[1] == "help" or split[1] == "cmds" or split[1] == "commands" then
-        baseshell.new("Help: ")
-        baseshell.new(" run [file]: Run file")
-        baseshell.new(" run dir: List programs")
-        baseshell.new("  For now, in order to create/edit programs you need to")
-        baseshell.new("  do that via external OS")
-    elseif shell.current ~= "" then
-        baseshell.new("Invalid Command: "..split[1])
+    if shell.current ~= "" then
+        runfile.run(shell.runfilepath..split[1])
     end
-    
+
     shell.current = ""
     baseshell.newline()
 end
 
-function shell.render()
-    type_,key = signal.get("key_down")
+function shell.render(type_,key)
     if type_ == "key" then
         shell.current = shell.current..key
     elseif type_ == "key_special" then

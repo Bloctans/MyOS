@@ -1,7 +1,7 @@
 local gpu = component.list("gpu")()
 _G.bootaddr = computer.getBootAddress()
 
-component.invoke(gpu,"set",1,1,"Init Script:")
+component.invoke(gpu,"set",1,1,"Init:")
 
 component.invoke(gpu,"set",1,2,"Start MPath")
 
@@ -54,10 +54,11 @@ if not ok then
         end
         table.insert(lines, new)
     end
-    invoke(gpu,"set",1,1,"A surious error occured.  ")
-    invoke(gpu,"set",1,2,"Click to view error.  ")
-    invoke(gpu,"set",1,3,"Press any key to restart.  ")
-    invoke(gpu,"set",1,4,"                              ")
+    invoke(gpu,"set",1,1,"(Level 2 Error)  ")
+    invoke(gpu,"set",1,2,"A surious error occured.  ")
+    invoke(gpu,"set",1,3,"Click to view error.  ")
+    invoke(gpu,"set",1,4,"Press any key to restart.  ")
+    invoke(gpu,"set",1,5,"                              ")
     computer.beep(1000,0.5)
 end
 
@@ -69,6 +70,6 @@ while true do
     if sigerr[1] == "key_down" then
         computer.shutdown(true)
     elseif sigerr[1] == "touch" then
-        for i,v in pairs(lines) do invoke(gpu,"set",1,i+4,v.."  ") end
+        for i,v in pairs(lines) do invoke(gpu,"set",1,i+5,v.."  ") end
     end
 end

@@ -21,18 +21,20 @@
         - OpenOS: Installer Part 2 (Copy installer files)
         - Boot: Installer
         - Boot: setup gpu res and fill
+        - Run file: Check if exists
+        - Run file: integrate into enter handle (instead of you having to do run [file])
 
     DOING:
-        - Run file: integrate into enter handle (instead of you having to do run [file])
-        - Graphics mode 
-            (draw pixels w/ braile) 
-            (320 x 200 at 2 colors per 2x4 pixels)
-            (look at far bottom of todo list for bit to braile)
-
 
     DO:
         - System: Processes
         - Run file: CTRL + C
+        - Processes: Move run to a process
+        - Processes: kernel (+shell mode) are considered process 0, the main thread
+        - Processes: APIS
+        - Signals: make it so that signal pulling works in the background and signal.get will ask for the latest input
+        - Processes: Move graphics to a process
+        - Signals: Move to a different process (thread) for better performance
 
     Alpha 1.0 (Done)
 
@@ -40,21 +42,22 @@
         - Unhardcode current DIR
         - Run file: edit / Create/Edit file
         - Run file: rm / Remove File
-        - Processes: Move run to a process
-        - Processes: kernel (+shell and graphics mode) are considered process 0, the main thread
-        - Processes: APIS
-        - Signals: Move to a different process (thread) for better performance
+        - Merge shell and baseshell with package.merge?
+        - Blinking cursor
         
     Alpha 1.2 (Security and QOL Update):
-        - Blinking cursor
+        - Graphics mode 
+            (draw pixels w/ braile) 
+            (320 x 200 at 2 colors per 2x4 pixels)
+            (look at far bottom of todo list for bit to braile)
         - Dir: paths
         - Dir: List file sizes and creation dates
         - Check for hard drive
         - Run file: Sandbox
-        - Run file: Check if exists
         - Run file: Ability to either sandbox or unsandbox a program
         - Run file: List Processes
         - Shell: \n support
+        - Run file: Args
 
     Alpha 1.3 (Rewrite and settings):
         - Run file: Config
@@ -68,36 +71,41 @@
         - Shell/System: Update check
 
     Alpha 1.4:
-        - MineOS: Installer
         - API rewrites (signal events)
+        - Signals: Process multipile inputs
         - Shell: input lag (and keyboard)
 
     Alpha 1.5:
         - Feature: Graphical Shell Program (Windows 1.0 without 2 windows at once)
         - Run file: New process
         - Run file: End process
+        - MineOS: Installer
 ]]
 
 --[[
-    If you number each bit of a byte like 0b12345678 then a braille
+    Processes:
+        The process system will start before the kernel. each process is a different thread.
+
+        For sys:
+            /programs/*: all run as a different process, can be stopped via CTRL+C
+]]
+
+--[[
+    Braile characters: U+28XX
+
+    to get pixel: modulus
+    to get character: x/2, y/4, round down
+    treat 1,4 and 2,4 specially, otherwise >3 = x: 2
+
+    If you number each bit of a byte like 0b87654321 then a braille
     character looks like:
+        1  4
+        2  5
+        3  6
+        7  8
 
-        8  5
-        7  4
-        6  3
-        2  1
-
-    We could make a index list like this:
-        1,1 = 8
-        1,2 = 7
-        1,3 = 6
-        1,4 = 2
-        
-        2,1 = 5
-        2,2 = 4
-        2,3 = 3
-        2,4 = 1
-        (and generate it upon startup maybe?)
+    how to store?
+    we store each char x and y, then in that we have a fg color and a string with the binary in it
 ]]
 
 --[[

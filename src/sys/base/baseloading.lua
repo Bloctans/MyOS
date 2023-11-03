@@ -5,6 +5,27 @@ loading = {}
 
 invoke = component.invoke
 
+function loading.merge(_path, table)
+    error("Do not use this")
+    if not table then
+        table = {}
+    end
+
+    sucess, mergetable = pcall(loading.require(_path))
+
+    for i,v in select(2, pcall(loading.require(_path))) do
+        table[#table + 1] = v
+    end
+
+    return table
+end
+
+function loading.doesexist(_path)
+    local _path = MPath(_path)..".lua"
+
+    return component.filesystem.exists(_path)
+end
+
 function loading.loadfile(_path, nodompath)
     if not nodompath then
         _path = MPath(_path)..".lua"
