@@ -20,6 +20,9 @@ _G.package = _G.baseloading
 _G.require = package.require
 _G.baseloading = nil
 
+status("Starting process system")
+_G.process = require("process")
+
 status("")
 status("Kernel:")
-package.loadandinit("kernel")
+process.New("krnl","kernel")

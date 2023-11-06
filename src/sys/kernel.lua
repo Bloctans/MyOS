@@ -9,7 +9,6 @@ _G.signal = require("signal")
 status("Starting shell...")
 shell = require("shell")
 shell.init()
-status("Waiting for user input...")
 
 --_G.graphicsmode = false
 

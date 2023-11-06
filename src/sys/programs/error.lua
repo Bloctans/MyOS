@@ -1,0 +1,1 @@
+aisjf.error("funny")

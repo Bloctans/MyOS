@@ -37,7 +37,10 @@ function shell.render(type_,key)
         end
     end
 
-    baseshell.edit(shell.start..shell.current)
+    if type_ ~= "none" then
+        baseshell.edit(shell.start..shell.current)
+    end
+
     baseshell.render()
 end
 

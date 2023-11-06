@@ -11,84 +11,96 @@
         - Shell: Enter to newline
         - Signals: move keyboard logic to lua script
         - Shell: Backspace
-        - Run file: Error handler
+        - Program: Error handler
         - Shell/System: Run files (run)
-        - Run file: cls
-        - Run file: Error handler Details
+        - Program: cls
+        - Program: Error handler Details
         - Base Error Handler: fix strings
-        - Run file: dir / List Current DIR
+        - Program: dir / List Current DIR
         - OpenOS: Installer Part 1
         - OpenOS: Installer Part 2 (Copy installer files)
         - Boot: Installer
         - Boot: setup gpu res and fill
-        - Run file: Check if exists
+        - Program: Check if exists
         - Run file: integrate into enter handle (instead of you having to do run [file])
-
+        - System: Processes
+        - Processes: kernel (+shell mode) are considered process 1, the main thread
+        - Processes: Move run to a process
+]] --[[
+    
     DOING:
 
     DO:
-        - Start writing new InstallList
-        - System: Processes
         - Run file: CTRL + C
-        - Processes: Move run to a process
-        - Processes: kernel (+shell mode) are considered process 0, the main thread
-        - Processes: APIS
-        - Signals: make it so that signal pulling works in the background and signal.get will ask for the latest input
-        - Processes: Move graphics to a process
-        - Signals: Move to a different process (thread) for better performance
 
     Alpha 1.0 (Done)
 
     Alpha 1.1 (Program and Graphics update):
         - Unhardcode current DIR
-        - Run file: edit / Create/Edit file
-        - Run file: rm / Remove File
+        - Program: edit / Create/Edit file
+        - Program: rm / Remove File
+        - Processes: List
+        - Sleep function
+        - Program: List Processes
         - Merge shell and baseshell with package.merge?
         - Blinking cursor
-        
-    Alpha 1.2 (Security and QOL Update):
+        - Processes: Move graphics to a process
         - Graphics mode 
             (draw pixels w/ braile) 
             (320 x 200 at 2 colors per 2x4 pixels)
             (look at far bottom of todo list for bit to braile)
+        - Start writing new InstallList
+
+    Alpha 1.2 (Security and QOL Update):
+        - 1.2: dev to new branch
         - Dir: paths
         - Dir: List file sizes and creation dates
         - Check for hard drive
-        - Run file: Sandbox
-        - Run file: Ability to either sandbox or unsandbox a program
-        - Run file: List Processes
+        - Wrapper lib for shell
+        - Program: Sandbox programs
         - Shell: \n support
-        - Run file: Args
+        - Program: Args
 
     Alpha 1.3 (Rewrite and settings):
-        - Run file: Config
+        - Program: Config
         - Shell: cd / Change Current DIR
         - Base Shell: Optimize/Rewrite
         - Base Shell: keep last 4 lines in table
         - Rewrite all the bad things (currently only shell commands)
         - OS: User Management or somethin
         - Main shell: Wrap around text once it hits the edge of screen
-        - Run file: update
+        - Program: update
         - Shell/System: Update check
 
     Alpha 1.4:
-        - API rewrites (signal events)
+        - Require: New Require system for after kernel
+        - API rewrites (signal, require)
         - Signals: Process multipile inputs
         - Shell: input lag (and keyboard)
+        - Package: Move some things to fs
 
     Alpha 1.5:
         - Feature: Graphical Shell Program (Windows 1.0 without 2 windows at once)
-        - Run file: New process
-        - Run file: End process
+        - Program: New process
+        - Program: End process
         - MineOS: Installer
+
+    Alpha 1.6:
+        - Rewrite OS to be graphics based
 ]]
 
 --[[
     Processes:
         The process system will start before the kernel. each process is a different thread.
 
-        For sys:
-            /programs/*: all run as a different process, can be stopped via CTRL+C
+        Data Layout for process:
+            index 1: Status
+            index 2: Name
+            index 3: Other info
+            index 4: coroutine object
+
+    process.lua will be considered a process in the process list, however will not be endable
+    to end, force an error!
 ]]
 
 --[[

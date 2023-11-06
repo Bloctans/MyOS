@@ -2,7 +2,7 @@ runfile = {}
 
 function runfile.run(path)
     if package.doesexist(path) then
-        local ok, err = xpcall(package.loadandinit, debug.traceback, path)
+        process.New("file", path)
 
         baseshell.newline()
         if not ok then

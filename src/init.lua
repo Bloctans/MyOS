@@ -2,7 +2,6 @@ local gpu = component.list("gpu")()
 _G.bootaddr = computer.getBootAddress()
 
 component.invoke(gpu,"set",1,1,"Init:")
-
 component.invoke(gpu,"set",1,2,"Start MPath")
 
 -- Incase you wanna move the OS base
@@ -30,6 +29,11 @@ function errorwrap()
     baseloading.loadfile("osver.lua", true)()
     _G._OSFULLV = _G._OSVERSION.." (Build #".._G._OSBUILD..")"
     component.invoke(gpu,"set",1,4,"Load osver (".._G._OSFULLV..")")
+
+    if _G._OSBUILD == 1 then
+        error("Because of my poor decisions you cannot continue.")
+        return
+    end
 
     -- start boot script
     component.invoke(gpu,"set",1,6,"Boot script:")
