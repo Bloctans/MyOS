@@ -37,7 +37,7 @@ function Process.New(name, path)
     Process.processes[Process_ID] = {1, name, {
         ["stop"] = false
     }, Process_Thread}
-    coroutine.resume(Process_Thread)
+    return coroutine.resume(Process_Thread)
 end
 
 function Process.List()

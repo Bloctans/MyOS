@@ -45,7 +45,7 @@
         - Merge shell and baseshell with package.merge?
         - Blinking cursor
         - Processes: Move graphics to a process
-        - Graphics mode 
+        - Graphics mode (Practice for BlocNT)
             (draw pixels w/ braile) 
             (320 x 200 at 2 colors per 2x4 pixels)
             (look at far bottom of todo list for bit to braile)
@@ -65,12 +65,7 @@
         - Program: Config
         - Shell: cd / Change Current DIR
         - Base Shell: Optimize/Rewrite
-        - Base Shell: keep last 4 lines in table
-        - Rewrite all the bad things (currently only shell commands)
-        - OS: User Management or somethin
         - Main shell: Wrap around text once it hits the edge of screen
-        - Program: update
-        - Shell/System: Update check
 
     Alpha 1.4:
         - Require: New Require system for after kernel
@@ -79,14 +74,18 @@
         - Shell: input lag (and keyboard)
         - Package: Move some things to fs
 
-    Alpha 1.5:
-        - Feature: Graphical Shell Program (Windows 1.0 without 2 windows at once)
-        - Program: New process
-        - Program: End process
-        - MineOS: Installer
+    Then release a new os called BlocNT that is closely related to this dos thing
+]]
 
-    Alpha 1.6:
-        - Rewrite OS to be graphics based
+--[[
+    "BlocNT":
+        DO:
+            - Think out the layout of the OS (Maybe look into WinNT boot process)
+
+        Beta 1.0:
+            - Graphics system
+            - Boot manager and stuff
+            - Windows 1.0 without 2 windows at once
 ]]
 
 --[[
