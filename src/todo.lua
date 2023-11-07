@@ -31,11 +31,21 @@
     DOING:
 
     DO:
-        - Run file: CTRL + C
 
     Alpha 1.0 (Done)
 
-    Alpha 1.1 (Program and Graphics update):
+    Alpha 1.1 (Process and Graphics update):
+        - Processes: Move graphics to a process
+        - Graphics mode (Practice for BlocNT)
+            (draw pixels w/ braile) 
+            (320 x 200 at 2 colors per 2x4 pixels)
+            (look at far bottom of todo list for bit to braile)
+        - Start writing new InstallList
+
+    After 1.1: Start BlocNT
+
+    Alpha 1.2:
+        - 1.2: dev to new branch
         - Unhardcode current DIR
         - Program: edit / Create/Edit file
         - Program: rm / Remove File
@@ -44,15 +54,8 @@
         - Program: List Processes
         - Merge shell and baseshell with package.merge?
         - Blinking cursor
-        - Processes: Move graphics to a process
-        - Graphics mode (Practice for BlocNT)
-            (draw pixels w/ braile) 
-            (320 x 200 at 2 colors per 2x4 pixels)
-            (look at far bottom of todo list for bit to braile)
-        - Start writing new InstallList
 
-    Alpha 1.2 (Security and QOL Update):
-        - 1.2: dev to new branch
+    Alpha 1.3 (Security and QOL Update):
         - Dir: paths
         - Dir: List file sizes and creation dates
         - Check for hard drive
@@ -61,31 +64,54 @@
         - Shell: \n support
         - Program: Args
 
-    Alpha 1.3 (Rewrite and settings):
+    Alpha 1.4 (Rewrite and settings):
         - Program: Config
         - Shell: cd / Change Current DIR
         - Base Shell: Optimize/Rewrite
         - Main shell: Wrap around text once it hits the edge of screen
 
-    Alpha 1.4:
+    Alpha 1.5:
         - Require: New Require system for after kernel
         - API rewrites (signal, require)
         - Signals: Process multipile inputs
         - Shell: input lag (and keyboard)
         - Package: Move some things to fs
-
-    Then release a new os called BlocNT that is closely related to this dos thing
 ]]
 
 --[[
     "BlocNT":
         DO:
             - Think out the layout of the OS (Maybe look into WinNT boot process)
+            - Please, take your time and revise anything thats bad
 
         Beta 1.0:
-            - Graphics system
-            - Boot manager and stuff
+            - Follow Layout
             - Windows 1.0 without 2 windows at once
+
+        Layout:
+            Init.lua: Finds the boot folder and initalizes bootmgr (tries to)
+            Boot:
+                BCD.lua: Stores the Data on where and what to boot
+                Bootmgr.lua: Allows you to choose what to boot
+                LoadFile.lua: Shared between Main OS and Boot, ALLOW AN ENV TO BE PICKED (eg. _G)
+            Main:
+                Sys:
+                    Config:
+                        The registry, idk
+                    Boot:
+                        Boot.lua: Loads Bootlibs, Registry and boot screen, then passes to kernel
+                        BootLibs:
+                            Package.lua: Handles all package systems for the os (Require, Run, Etc.)
+                            Graphics.lua: The graphics system for the entire OS (320 x 200 at 2 colors per 2x4 pixels)
+                            Components.lua: Basic Component proxy Wrapper, allows for components to be proxied. Component management comes later on in boot
+                        BootVID.lua: Simple Boot animation
+                    Krnl:
+                        KrnlLibs:
+                            Keyboard.lua: API for typing and input (do this well please)
+                            FS.lua: File system wrapper
+                            Process.lua: Processes
+                        Krnl.lua: Update Bootvid and load anything in KrnlLibs (Processes, Keyboard and stuff)
+                    TODO: After kernel
 ]]
 
 --[[

@@ -13,7 +13,7 @@ Process.processes = {{0, "processes", "no"}}
 function Process.Find()
     for i,v in pairs(Process.processes) do
         if v[4] == coroutine.running() then
-            return v[3],v
+            return v[3],v,i
         end
     end
 end

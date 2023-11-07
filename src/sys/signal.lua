@@ -5,6 +5,10 @@ function signal.pull(timeout)
     return {computer.pullSignal(timeout)}
 end
 
+function signal.rawpull(timeout)
+    return {computer.pullSignal(timeout)}
+end
+
 keyboard = require("keyboard")
 
 function signal.get(_type)
@@ -12,7 +16,7 @@ function signal.get(_type)
     
     if _signal[1] == _type then
         if _type == "key_down" then
-            return keyboard.luasignal(_signal[3])
+            return keyboard.luasignal(_signal[3],_signal[4])
         end
     end
     return "none", nil

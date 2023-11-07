@@ -2,7 +2,7 @@ runfile = {}
 
 function runfile.run(path)
     if package.doesexist(path) then
-        process.New("file", path)
+        local ok, result = process.New("file", path)
 
         baseshell.newline()
         if not ok then
