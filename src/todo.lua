@@ -89,6 +89,7 @@
         Todo:
             - BCD
             - Main: Sys
+            - Boot Manager: Rewrite
 
         Please, take your time and revise anything thats bad
 
