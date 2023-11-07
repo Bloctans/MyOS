@@ -31,16 +31,16 @@
     DOING:
 
     DO:
-
-    Alpha 1.0 (Done)
-
-    Alpha 1.1 (Process and Graphics update):
         - Processes: Move graphics to a process
         - Graphics mode (Practice for BlocNT)
             (draw pixels w/ braile) 
             (320 x 200 at 2 colors per 2x4 pixels)
             (look at far bottom of todo list for bit to braile)
         - Start writing new InstallList
+
+    Alpha 1.0 (Done)
+
+    Alpha 1.1 (Process and Graphics update):
 
     After 1.1: Start BlocNT
 
