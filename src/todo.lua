@@ -80,18 +80,26 @@
 
 --[[
     "BlocNT":
-        DO:
-            - Think out the layout of the OS (Maybe look into WinNT boot process)
-            - Please, take your time and revise anything thats bad
+        https://en.wikipedia.org/wiki/Booting_process_of_Windows_NT
+        Done:
+            - Init
+            - Boot: Boot manager
+            - Boot: Basic Load File
+
+        Todo:
+            - BCD
+            - Main: Sys
+
+        Please, take your time and revise anything thats bad
 
         Beta 1.0:
             - Follow Layout
             - Windows 1.0 without 2 windows at once
 
         Layout:
-            Init.lua: Finds the boot folder and initalizes bootmgr (tries to)
+            Init.lua: Finds the boot folder, Error Level 0 and initalizes bootmgr (tries to)
             Boot:
-                BCD.lua: Stores the Data on where and what to boot
+                BCD.lua: Stores the Data on where and what to boot (later)
                 Bootmgr.lua: Allows you to choose what to boot
                 LoadFile.lua: Shared between Main OS and Boot, ALLOW AN ENV TO BE PICKED (eg. _G)
             Main:
@@ -110,7 +118,7 @@
                             Keyboard.lua: API for typing and input (do this well please)
                             FS.lua: File system wrapper
                             Process.lua: Processes
-                        Krnl.lua: Update Bootvid and load anything in KrnlLibs (Processes, Keyboard and stuff)
+                        Krnl.lua: Update Bootvid, Error Level 1, and load anything in KrnlLibs (Processes, Keyboard and stuff)
                     TODO: After kernel
 ]]
 
