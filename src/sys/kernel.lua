@@ -4,17 +4,16 @@ status("Initalizing libs")
 _G.strutil = require("strutil")
 _G.signal = require("signal")
 
---package.loadandinit("newapis/graphlibs/graphicsload")
+_G.graphics = require("newapis/graphics")
+_G.initgraphics = false
 
 status("Starting shell...")
 shell = require("shell")
 shell.init()
 
---_G.graphicsmode = false
-
 function retry()
     function krnl_loop()
-        package.loadandinit("kernel_loop")
+        return package.loadandinit("kernel_loop")
     end
 
     local k_ok, k_err = xpcall(krnl_loop, debug.traceback)
@@ -28,6 +27,10 @@ function retry()
         component.gpu.set(0,3,"Enter to retry,   ")
         component.gpu.set(0,4,"V to View error,   ")
         component.gpu.set(0,5,"R to reboot.   ")
+    else
+        component.gpu.set(0,1,"!!! SUDDEN HALT !! (Kernel)")
+        component.gpu.set(0,2,"Enter to retry,   ")
+        component.gpu.set(0,3,"R to reboot.   ")
     end
 
     while true do

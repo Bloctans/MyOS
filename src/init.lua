@@ -64,6 +64,9 @@ if not ok then
     invoke(gpu,"set",1,4,"Press any key to restart.  ")
     invoke(gpu,"set",1,5,"                              ")
     computer.beep(1000,0.5)
+else
+    invoke(gpu,"set",1,1,"!!! SUDDEN HALT !!")
+    invoke(gpu,"set",1,2,"Press any key to restart.  ")
 end
 
 -- key down = restart

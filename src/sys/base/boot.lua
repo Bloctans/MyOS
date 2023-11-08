@@ -25,4 +25,6 @@ _G.process = require("process")
 
 status("")
 status("Kernel:")
-process.New("krnl","kernel")
+local kiok, kierr = process.New("krnl","kernel")
+
+error(kierr)

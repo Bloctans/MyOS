@@ -29,9 +29,9 @@ end
 function Process.New(name, path)
     local File = package.loadfile(path)
     local Process_ID = #Process.processes + 1
-    local Process_Thread = coroutine.create(function(...)
-        local ProcessOK, ProcessResult = pcall(File)
-        return ProcessOK, ProcessResult
+    local Process_Thread = coroutine.create(function()
+        local ProcessOK, ProcessResult = xpcall(File, debug.traceback)
+        return ProcessResult
     end)
 
     Process.processes[Process_ID] = {1, name, {

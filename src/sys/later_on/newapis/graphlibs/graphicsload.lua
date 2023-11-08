@@ -1,1 +1,0 @@
-_G.graphics = require("newapis/graphics")

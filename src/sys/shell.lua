@@ -7,6 +7,11 @@ shell.current = ""
 shell.start = _G.ROOT.._G.SYSROOT.."programs> "
 
 function shell.init()
+    graphics.drawpixel(2,4,0xFFFFFF,0x000000)
+    graphics.drawpixel(1,4,0xFFFFFF,0x000000)
+    graphics.drawpixel(2,5,0xFFFFFF,0x000000)
+    graphics.drawpixel(1,5,0xFFFFFF,0x000000)
+    graphics.start(0x0000FF)
     _G.baseshell = require("baseshell")
 
     baseshell.new("Welcome to ".._G._OSFULLV)

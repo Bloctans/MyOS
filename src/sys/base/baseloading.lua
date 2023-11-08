@@ -48,7 +48,7 @@ function loading.require(_path)
 end
 
 function loading.loadandinit(_path)
-    loading.loadfile(_path)()
+    return loading.loadfile(_path)()
 end
 
 return loading

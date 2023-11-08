@@ -2,11 +2,10 @@
 
 while true do
     type_,key = signal.get("key_down")
-    --[[if not graphicsmode then
-        shell.render()
+    if _G.initgraphics == false then
+        shell.render(type_,key)
     else
-        computer.pullSignal()
-        graphics.loop()
-    end]]
-    shell.render(type_,key)
+        graphics.render()
+    end
+    --shell.render(type_,key)
 end

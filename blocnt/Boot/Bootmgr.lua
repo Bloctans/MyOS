@@ -7,19 +7,25 @@ func()
 
 _G.Loadfile = select(2,pcall(func))
 
-component.invoke(gpu,"setBackground",0xFFFFFF)
-component.invoke(gpu,"setForeground",0x000000)
+function BlackBG()
+    component.invoke(gpu,"setBackground",0x000000)
+    component.invoke(gpu,"setForeground",0xFFFFFF)
+end
+
+function WhiteBG()
+    component.invoke(gpu,"setBackground",0xFFFFFF)
+    component.invoke(gpu,"setForeground",0x000000)
+end
+WhiteBG()
 
 component.invoke(gpu,"fill",1,1,TargetW,1," ")
 component.invoke(gpu,"fill",1,TargetH,TargetW,1," ")
-component.invoke(gpu,"set",31,1,"BlocOS Boot Manager")
+component.invoke(gpu,"set",30,1,"BlocOS Boot Loader")
 
 function BootMGRError(string)
-    component.invoke(gpu,"setBackground",0x000000)
-    component.invoke(gpu,"setForeground",0xFFFFFF)
+    BlackBG()
     component.invoke(gpu,"set",4,4,"Error: "..string)
-    component.invoke(gpu,"setBackground",0xFFFFFF)
-    component.invoke(gpu,"setForeground",0x000000)
+    WhiteBG()
     component.invoke(gpu,"set",2,TargetH,"Any Key: Restart")
     halt()
 end

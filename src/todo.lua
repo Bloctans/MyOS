@@ -108,7 +108,7 @@
                     Config:
                         The registry, idk
                     Boot:
-                        Boot.lua: Loads Bootlibs, Registry and boot screen, then passes to kernel
+                        Boot.lua: Initalizes Bootlibs, Registry and boot screen, then passes to kernel
                         BootLibs:
                             Package.lua: Handles all package systems for the os (Require, Run, Etc.)
                             Graphics.lua: The graphics system for the entire OS (320 x 200 at 2 colors per 2x4 pixels)
@@ -119,8 +119,14 @@
                             Keyboard.lua: API for typing and input (do this well please)
                             FS.lua: File system wrapper
                             Process.lua: Processes
-                        Krnl.lua: Update Bootvid, Error Level 1, and load anything in KrnlLibs (Processes, Keyboard and stuff)
-                    TODO: After kernel
+                        Krnl.lua: Update Bootvid, Error Level 1 (BSOD), and Initalizes KrnlLibs (Processes, Keyboard and stuff), Calls kmumb.lua after
+                        kmumb.lua (Kernel-Mode User-Mode Boundry): Sets up kernel calls and the user mode Sandbox, Also sets up the kernel loop. initalizes user mode with umrt
+                    Usermode:
+                        UserLibs:
+                            Cursor.lua: Mouse cursor and its API calls
+                            WindowMGR.lua: Window manager and drawer API
+                        umrt.lua (User-mode runtime): Sets up apis for kernel calls, Initalizes User-mode libs, and clears screen, Then calls uminit.lua
+                        uminit.lua (User-mode init): Initalizes all needed things (Idk what yet)
 ]]
 
 --[[
