@@ -33,8 +33,6 @@
 ]] --[[
     
     DOING:
-
-    DO:
         - Start writing new InstallList
 
     Alpha 1.0 (Done)
