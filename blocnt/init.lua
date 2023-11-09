@@ -50,11 +50,9 @@ end
 
 local invoke = component.invoke
 
--- error wrapper start
 local ok, err = xpcall(Wrapper, debug.traceback)
 local lines = {}
 
--- creates the error dialog
 if not ok then
     for s in err:gmatch("[^\r\n]+") do
         new = ""

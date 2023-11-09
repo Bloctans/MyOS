@@ -26,16 +26,15 @@
         - System: Processes
         - Processes: kernel (+shell mode) are considered process 1, the main thread
         - Processes: Move run to a process
+        - Graphics mode (Practice for BlocNT)
+            (draw pixels w/ braile) 
+            (320 x 200 at 2 colors per 2x4 pixels)
+            (look at far bottom of todo list for bit to braile)
 ]] --[[
     
     DOING:
 
     DO:
-        - Processes: Move graphics to a process
-        - Graphics mode (Practice for BlocNT)
-            (draw pixels w/ braile) 
-            (320 x 200 at 2 colors per 2x4 pixels)
-            (look at far bottom of todo list for bit to braile)
         - Start writing new InstallList
 
     Alpha 1.0 (Done)
@@ -45,6 +44,7 @@
     After 1.1: Start BlocNT
 
     Alpha 1.2:
+        - Graphics mode: Premitive drawing system (From BlocNT if can)
         - 1.2: dev to new branch
         - Unhardcode current DIR
         - Program: edit / Create/Edit file
@@ -87,9 +87,11 @@
             - Boot: Basic Load File
 
         Todo:
+            - Write down the todo list instead of following the layout
             - BCD
             - Main: Sys
             - Boot Manager: Rewrite
+            - Packager: Loaded cache
 
         Please, take your time and revise anything thats bad
 
@@ -124,8 +126,10 @@
                     Usermode:
                         UserLibs:
                             Cursor.lua: Mouse cursor and its API calls
-                            WindowMGR.lua: Window manager and drawer API
-                        umrt.lua (User-mode runtime): Sets up apis for kernel calls, Initalizes User-mode libs, and clears screen, Then calls uminit.lua
+                            WinMGR.lua: Window manager, also sandboxes windows so they can only use certain libs (listed in file)
+                            GraphicsDraw.lua: Squares and stuff.
+                            WinDraw.lua: Allows for buttons and stuff to be drawn on a window
+                        umrt.lua (User-mode runtime): Sets up apis for kernel calls (user side), Initalizes User-mode libs, and clears screen, Then calls uminit.lua
                         uminit.lua (User-mode init): Initalizes all needed things (Idk what yet)
 ]]
 
