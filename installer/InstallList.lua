@@ -7,8 +7,11 @@ install_list = {
             "osver.lua"
         },
         ["/sys/"] = {
+            "baseshell.lua",
+            "kernel.lua",
+            "kernel_loop.lua"
             "keyboard.lua",
-            "runfile.lua",
+            "process.lua",
             "runfile.lua",
             "shell.lua",
             "signal.lua",
@@ -16,17 +19,19 @@ install_list = {
         },
         ["/sys/base/"] = {
             "baseloading.lua",
-            "baseshell.lua",
             "boot.lua",
             "components.lua"
         },
         ["/sys/programs/"] = {
             "cls.lua",
             "dir.lua",
+            "endkrnl.lua",
+            "error.lua",
+            "gtest.lua",
+            "help.lua",
             "reboot.lua",
             "shutdown.lua",
-            "test.lua",
-            "update.lua"
+            "test.lua"
         }
     }
 }
