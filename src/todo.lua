@@ -83,11 +83,17 @@
             - Init
             - Boot: Boot manager
             - Boot: Basic Load File
+            - BootLibs: packages
 
-        Todo:
-            - Write down the todo list instead of following the layout
-            - BCD
+        1.0:
+            - Boot: Overwrite BootMGRError at kernel time
+            - Boot: Boot script
+            - BootLibs: Graphics mode
+            - BootLibs: Components
             - Main: Sys
+
+        1.1:
+            - BCD
             - Boot Manager: Rewrite
             - Packager: Loaded cache
 
@@ -117,7 +123,7 @@
                     Krnl:
                         KrnlLibs:
                             Keyboard.lua: API for typing and input (do this well please)
-                            FS.lua: File system wrapper
+                            FS.lua: File system wrapper (also adds . and ..)
                             Process.lua: Processes
                         Krnl.lua: Update Bootvid, Error Level 1 (BSOD), and Initalizes KrnlLibs (Processes, Keyboard and stuff), Calls kmumb.lua after
                         kmumb.lua (Kernel-Mode User-Mode Boundry): Sets up kernel calls and the user mode Sandbox, Also sets up the kernel loop. initalizes user mode with umrt
