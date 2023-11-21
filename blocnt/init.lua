@@ -64,6 +64,9 @@ if not ok then
         end
         table.insert(lines, new)
     end
+    if TargetW+10 < MaxW then
+        invoke(gpu,"setResolution",TargetW+10, TargetH)
+    end
     invoke(gpu,"set",1,1,"(Level 0 Error)  ")
     invoke(gpu,"set",1,2,"A surious error occured.  ")
     invoke(gpu,"set",1,3,"Click to view error.  ")

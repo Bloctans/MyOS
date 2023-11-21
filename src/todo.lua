@@ -31,27 +31,37 @@
             (320 x 200 at 2 colors per 2x4 pixels)
             (look at far bottom of todo list for bit to braile)
         - Start writing new InstallList
-]] --[[
+]] 
+
+--[[
+    Roadmap:
+        - Alpha 1.2 & 1.3
+        - Continue blocnt
+        - Alpha 1.4
+]]
+
+--[[
     
     DOING:
+
+    DO:
+        - 1.2: dev to new branch
+        - Merge shell and baseshell with package.merge?
+        - Blinking cursor    
+        - Program: edit / Create/Edit file (Vim-Like)
 
     Alpha 1.0 (Done)
 
     Alpha 1.1 (Process and Graphics update) (Done)
 
-    After 1.1: Start BlocNT
+    After 1.1: Start BlocNT (Done)
 
     Alpha 1.2:
         - Graphics mode: Premitive drawing system (From BlocNT if can)
-        - 1.2: dev to new branch
         - Unhardcode current DIR
-        - Program: edit / Create/Edit file
         - Program: rm / Remove File
-        - Processes: List
         - Sleep function
-        - Program: List Processes
-        - Merge shell and baseshell with package.merge?
-        - Blinking cursor
+        - Program: List Processes / Processes: List
 
     Alpha 1.3 (Security and QOL Update):
         - Dir: paths
@@ -84,13 +94,16 @@
             - Boot: Boot manager
             - Boot: Basic Load File
             - BootLibs: packages
-
-        1.0:
             - Boot: Overwrite BootMGRError at kernel time
             - Boot: Boot script
             - BootLibs: Graphics mode
             - BootLibs: Components
+
+        Doing:     
+
+        1.0:
             - Main: Sys
+            - Windows 2.0
 
         1.1:
             - BCD
@@ -98,10 +111,6 @@
             - Packager: Loaded cache
 
         Please, take your time and revise anything thats bad
-
-        Beta 1.0:
-            - Follow Layout
-            - Windows 1.0 without 2 windows at once
 
         Layout:
             Init.lua: Finds the boot folder, Error Level 0 and initalizes bootmgr (tries to)
@@ -114,27 +123,26 @@
                     Config:
                         The registry, idk
                     Boot:
-                        Boot.lua: Initalizes Bootlibs, Registry and boot screen, then passes to kernel
+                        Boot.lua: Initalizes Bootlibs, then passes to kernel
                         BootLibs:
                             Package.lua: Handles all package systems for the os (Require, Run, Etc.)
                             Graphics.lua: The graphics system for the entire OS (320 x 200 at 2 colors per 2x4 pixels)
                             Components.lua: Basic Component proxy Wrapper, allows for components to be proxied. Component management comes later on in boot
-                        BootVID.lua: Simple Boot animation
                     Krnl:
                         KrnlLibs:
                             Keyboard.lua: API for typing and input (do this well please)
                             FS.lua: File system wrapper (also adds . and ..)
                             Process.lua: Processes
-                        Krnl.lua: Update Bootvid, Error Level 1 (BSOD), and Initalizes KrnlLibs (Processes, Keyboard and stuff), Calls kmumb.lua after
-                        kmumb.lua (Kernel-Mode User-Mode Boundry): Sets up kernel calls and the user mode Sandbox, Also sets up the kernel loop. initalizes user mode with umrt
+                        Krnl.lua: Error Level 1 (BSOD), and Initalizes KrnlLibs (Processes, Keyboard and stuff), Calls kmumb.lua after
+                        kmumb.lua (Kernel-Mode User-Mode Boundry): Sets up kernel calls and the user mode Sandbox, Also sets up the kernel loop. initalizes user mode with umrt, considered the kernel by the process manager
                     Usermode:
                         UserLibs:
                             Cursor.lua: Mouse cursor and its API calls
                             WinMGR.lua: Window manager, also sandboxes windows so they can only use certain libs (listed in file)
-                            GraphicsDraw.lua: Squares and stuff.
-                            WinDraw.lua: Allows for buttons and stuff to be drawn on a window
+                            GraphicsDraw.lua: Squares and stuff. Renames Graphics to GraphicsInternals and renames itself to Graphics
+                            WinDraw.lua: Library for buttons and stuff to be drawn on a window
                         umrt.lua (User-mode runtime): Sets up apis for kernel calls (user side), Initalizes User-mode libs, and clears screen, Then calls uminit.lua
-                        uminit.lua (User-mode init): Initalizes all needed things (Idk what yet)
+                        uminit.lua (User-mode init): Initalizes Desktop (Windows 2.0 pretty much)
 ]]
 
 --[[

@@ -23,6 +23,7 @@ component.invoke(gpu,"fill",1,TargetH,TargetW,1," ")
 component.invoke(gpu,"set",30,1,"BlocOS Boot Loader")
 
 function BootMGRError(string)
+    component.invoke(gpu,"setResolution",TargetW+10, TargetH)
     BlackBG()
     component.invoke(gpu,"set",4,4,"Error: "..string)
     WhiteBG()
