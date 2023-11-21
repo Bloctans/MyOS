@@ -36,7 +36,7 @@
 --[[
     Roadmap:
         - Alpha 1.2 & 1.3
-        - Continue blocnt
+        - Blocnt: Up to User mode
         - Alpha 1.4
 ]]
 
@@ -57,7 +57,6 @@
     After 1.1: Start BlocNT (Done)
 
     Alpha 1.2:
-        - Graphics mode: Premitive drawing system (From BlocNT if can)
         - Unhardcode current DIR
         - Program: rm / Remove File
         - Sleep function
@@ -73,6 +72,7 @@
         - Program: Args
 
     Alpha 1.4 (Rewrite and settings):
+        - Graphics mode: Premitive drawing system (From BlocNT if can)
         - Program: Config
         - Shell: cd / Change Current DIR
         - Base Shell: Optimize/Rewrite

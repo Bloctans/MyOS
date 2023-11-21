@@ -41,7 +41,7 @@ function graphics.start(accent)
 end
 
 function graphics.render()
-    component.gpu.set(0,10,"Note: Graphics are sorta buggy")
+    component.gpu.set(0,10,"Note: Graphics are sorta buggy (Enter to stop)")
     -- Braille parse and stuff
     for i,v in pairs(graphics.draw) do
         for i2, v2 in pairs(graphics.draw[i]) do
