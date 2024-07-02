@@ -9,7 +9,7 @@ install_list = {
         ["/sys/"] = {
             "baseshell.lua",
             "kernel.lua",
-            "kernel_loop.lua"
+            "kernel_loop.lua",
             "keyboard.lua",
             "process.lua",
             "runfile.lua",
