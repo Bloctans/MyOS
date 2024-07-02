@@ -22,6 +22,9 @@ install_list = {
             "boot.lua",
             "components.lua"
         },
+        ["/sys/newapis"] = {
+            "graphics.lua"
+        },
         ["/sys/programs/"] = {
             "cls.lua",
             "dir.lua",
